@@ -94,12 +94,14 @@ Requirements Analysis Document
       Webapp has to mention Hackernews as original 
       Web app has to mention that this is a school project and it’s not meant to be some kind of competition for Hackernews
     System Models
-  Scenarios 
+  	Scenarios 
 		Scenario I: It’s tuesday afternoon and Bob is bored at home. He wants to read something funny so he browses a programming jokes website. 
     He scrolls through the most popular content upvoting and downvoting good and bad jokes. At the end of the day he feels amused.
     
     Scenario II:  It’s tuesday afternoon and Bob is bored at home. He invented some really nice jokes and he wants to post 
     them on the net. He finds a website to store his jokes and get feedback from others. He registers and posts one of the 
     jokes and it gets popular instantly with 200 upvotes and 12 comments. He feels pleased.
+    	Use Case Model can be found in the existing repository as an image.
+    
 
 Glossary
