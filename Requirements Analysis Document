@@ -1,0 +1,105 @@
+Requirements Analysis Document
+
+1. Introduction
+    a. Purpose of the system
+    
+        Provide a social news website for submitting relevant information, sharing knowledge and rating the content. 
+        Mostly focused on computer science and entrepreneurship.
+        
+    b. Scope of the system
+    
+        - Consume information from the user (posts and comments)
+        - Process and store information
+        - Present information to the user
+        - Focused on computer science, entrepreneurship information and anything that gratifies one's intellectual curiosity
+
+
+    c. Objectives and success criteria of the project
+    
+        - Make an application which is simple and easy to use
+        - Program should allow to share web content successfully
+        - Program should accurately promote the most relevant (combination of most recent and most popular ones) content to users based on the voting system
+        - Store data and be able to retrieve it without loss of data
+        
+    d. Definitions, acronyms, and abbreviations
+    
+        - Post - a relevant story posted into an application by the user
+        - Comment - short reflection, statement
+        - Karma point - Reputation points (upvotes - downvotes)
+        - User  
+        - Flag
+        - Spam
+        - REST: REpresentational State Transfer
+        - API: Application Programming Interface
+        - Inversion of Control (IoC)
+        - Dependency Injection (DI)
+        - Test driven development (TDD)
+        - Version control system(vcs)
+    e. References
+        - HackerNews: https://news.ycombinator.com/
+        - Reddit: https://www.reddit.com/
+    f. Overview 
+        The Project is an exact clone of the Hacker News website: it is a page on which registered user can post stories. Moreover, the site enables discussions by letting users write comments on stories and on other's comments. To publish stories and comments, users have to be logged into the system.
+
+2. Current system 
+  Non-existent.
+  
+3.Proposed system
+  Overview:
+    The proposed system is a website in which one is able to view stories and interact with stories by creating them, commenting on them and modifying the “point” system by giving or reducing a “point”. The website will be centered around stories posted by users. The stories of posted on the website will be about hacking news. This system is a replica of “Hacker News”. Users who are not registered are simply able to read stories and register themselves meanwhile registered users are able to upvote/downvote a story as well as create stories, view other user's past interactions on the website as well as see their own. A registered user is also able to comment on existing stories.
+
+   Functional requirements:
+    User have to be able to create an account
+    Only registered users can create new post
+    Only registered users can comment on the existing posts and reply to other comments
+    Design and functionality should mimic original Hacker News
+    System has to have “karma” system or similar
+    Only registered users can upvote
+    Users with 500 karma can downvote
+    Only registered users can report spam
+
+
+  Nonfunctional requirements
+    Usability
+      User Interface have to be intuitive and easy to use and understand
+      Website have to work smoothly, without critical errors and hangs
+      Error messages should explain how to recover from the error
+      Actions which cannot be undone should ask for user’s confirmation
+      The user documentation should be available and complete
+      
+    Reliability
+      System has to have an uptime of more than 95%
+      System should always process data in every circumstances (maintenance etc.)
+      
+    Performance
+      System has to be robust and fast
+      The website should be dynamic
+
+    Supportability
+      System has to have appropriate amount of tests
+      It has to utilize techniques that support software testing (DI, IoC, TDD)
+      Backend and frontend are independent and they can be switched
+      
+    Implementation
+      System have to utilize a VCS system (git)
+      Registered users should not be able to access some other user’s and account and post under their name
+      Users should be able to upvote and downvote a post only once
+    Interface
+      System has to have REST API
+      This REST API has to allow external program to query its state
+    Packaging
+      Project has to be shipped with whole data that is necessary (database scripts etc.)
+      Project has to utilize virtualization in order to be software independent (docker)
+    Legal 
+      Webapp has to mention Hackernews as original 
+      Web app has to mention that this is a school project and it’s not meant to be some kind of competition for Hackernews
+    System Models
+  Scenarios 
+		Scenario I: It’s tuesday afternoon and Bob is bored at home. He wants to read something funny so he browses a programming jokes website. 
+    He scrolls through the most popular content upvoting and downvoting good and bad jokes. At the end of the day he feels amused.
+    
+    Scenario II:  It’s tuesday afternoon and Bob is bored at home. He invented some really nice jokes and he wants to post 
+    them on the net. He finds a website to store his jokes and get feedback from others. He registers and posts one of the 
+    jokes and it gets popular instantly with 200 upvotes and 12 comments. He feels pleased.
+
+Glossary
