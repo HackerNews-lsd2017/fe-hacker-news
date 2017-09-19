@@ -1,28 +1,59 @@
-.App {
-  text-align: center;
+html, body {
+    height:100%;
+    width:100%;
+    margin:0;
+    padding:0;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+.app {
+    text-align: center;
 }
 
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
+/* application header */
+.app-header {
+    background-color: #222;
+    height: 150px;
+    color: white;
+    padding-bottom: 40px;
+    padding-top: 25px;
 }
 
-.Main-image {
+/* application content */
+.app-content {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: large;
+}
+
+/* logo */
+.app-logo {
+    animation: app-logo-spin infinite 20s linear;
+    height: 80px;
+}
+
+@keyframes app-logo-spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* rick and morty fan art */
+.main-image {
   height: 400px;
 }
 
-.App-intro {
-  font-size: large;
+/* buttons */
+.ping-server-button {
+  background-color: #A9A9A9;
+  height: 45px;
+  width: 100px;
+  color: white;
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+/* feedback message */
+.error {
+  color: red;
+}
+
+.success {
+  color: green;
 }
