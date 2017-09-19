@@ -2,9 +2,8 @@ import React, { Component } from 'react';
 import logo from '../img/logo.png';
 import '../styles/App.css';
 import image1 from '../img/image1.jpg'
-
-
 import axios from 'axios';
+
 const host = 'http://138.68.173.201:8080'; // make constants
 
 class App extends Component {
@@ -17,7 +16,7 @@ class App extends Component {
 
     updateTitle = () => {
         let params = {
-            echo: 'This is just a test'
+            echo: 'Server is running'
         };
 
         axios.get(`${host}/test`, {params: params}).then(response => {
@@ -35,24 +34,22 @@ class App extends Component {
         let {title} = this.state;
 
         return (
-            <div className="App">
-                <div className="App-header">
-                    <img src={logo} className="App-logo" alt="logo" />
+            <div className="app">
+                <div className="app-header">
+                    <img src={logo} className="app-logo" alt="logo" />
                     <h2>Hacker Wubadubadubdub News</h2>
                     <h3>Pickle Rick!</h3>
                 </div>
-
-                <div>
-                <br/>
-                <br/>
-                    <button onClick={this.updateTitle}>Update title</button>
-                    <h1>{title}</h1>
+                <div className="app-content">
+                    <p>Click the button below to check if this application is connected to the server.</p>
+                    <button className="ping-server-button" onClick={this.updateTitle}>Ping Server</button>
+                    <h1 className={(title === 'Error') ? "error" : "success"}>{title}</h1>
+                    <p>Endpoint for the server:</p>
+                    <a href="http://138.68.173.201:8080/test?echo=hello%20world">
+                        {host + "/test?echo=hello%20world"}
+                    </a>
                 </div>
-                <p className="App-intro">
-                    <br/>
-                    To get started, edit <code>src/App.js</code> and save to reload.
-                </p>
-                <img src={image1} className="Main-image" alt="image1"/>
+                <img src={image1} className="main-image" alt="image1"/>
             </div>
         );
     }
