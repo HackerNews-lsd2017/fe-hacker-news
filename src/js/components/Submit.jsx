@@ -2,6 +2,7 @@ import React from 'react';
 import PostActions from '../actions/PostActionCreators';
 import PostStore from '../stores/PostStore';
 import {Link} from 'react-router-dom';
+import {Redirect} from 'react-router';
 
 export default class extends React.Component {
     state = {
@@ -9,7 +10,8 @@ export default class extends React.Component {
             postTitle: "",
             postUrl: "",
             postText: ""
-        }
+        },
+        authenticated: PostStore.getAuth()
     }
 
     handleOnChange = (event) => {
@@ -43,23 +45,29 @@ export default class extends React.Component {
 
     render() {
         return (
-            <div className="submit-container">
-                <div className="title-input">
-                    title <input type="text" name="postTitle" onChange={this.handleOnChange} />
+            <div>
+                {!this.state.authenticated ? 
+                <Redirect to="/" />
+                :
+                <div className="submit-container">
+                    <div className="title-input">
+                        title <input type="text" name="postTitle" onChange={this.handleOnChange} />
+                    </div>
+                    <div className="url-input">
+                        url <input type="text" name="postUrl" onChange={this.handleOnChange} />
+                    </div>
+                    <span>or</span>
+                    <div className="text">
+                        text <textarea name="postText" id="text" cols="30" rows="10" onChange={this.handleOnChange} ></textarea>
+                    </div>
+                    <br/>
+                        <Link to="/">
+                            <button type="button" onClick={this.submitPost}>submit</button>
+                        </Link>
+                    <br/>
+                    <p> Leave url blank to submit a question for discussion. If there is no url, the text (if any) will appear at the top of the thread.</p>
                 </div>
-                <div className="url-input">
-                    url <input type="text" name="postUrl" onChange={this.handleOnChange} />
-                </div>
-                <span>or</span>
-                <div className="text">
-                    text <textarea name="postText" id="text" cols="30" rows="10" onChange={this.handleOnChange} ></textarea>
-                </div>
-                <br/>
-                    <Link to="/">
-                        <button type="button" onClick={this.submitPost}>submit</button>
-                    </Link>
-                <br/>
-                <p> Leave url blank to submit a question for discussion. If there is no url, the text (if any) will appear at the top of the thread.</p>
+                }
             </div>
         );
     }
