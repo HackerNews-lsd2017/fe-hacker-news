@@ -1,3 +1,3 @@
 export default {
-	baseUrl: 'localhost:8080'
+	baseUrl: 'http://46.101.28.25:8080'
 };
