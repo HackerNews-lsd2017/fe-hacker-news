@@ -6,6 +6,11 @@ import lodash from 'lodash';
 
 let _posts = [];
 
+/* Private Functions */
+function setPosts(data) {
+    _posts = data;
+}
+
 /* Flux Store Creation */
 const Store = assign({}, BaseStore, {
     getPosts() {
@@ -16,7 +21,9 @@ const Store = assign({}, BaseStore, {
         let action = payload.action;
         switch (action.type) {
             case 'FETCHED_POSTS':
-                setPosts(action.data);
+                if (action.data) {
+                    setPosts(action.data);
+                }
                 break;
             default:
                 return;

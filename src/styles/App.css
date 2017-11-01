@@ -11,7 +11,6 @@ a {
 }
 
 .app {
-    /*text-align: center;*/
     width:84.32%;
     margin: auto;
 }
@@ -45,4 +44,11 @@ a {
 .pass-recovery {
   color: blue;
   text-decoration: underline;
+}
+
+/* Story */
+
+.story-container {
+  padding-bottom: 20px;
+  padding-left: 20px;
 }
