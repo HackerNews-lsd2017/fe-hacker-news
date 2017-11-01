@@ -30,8 +30,11 @@ function logIn() {
 }
 
 function logOut() {
-    console.log("store logout")
     _authenticated = false;
+}
+
+function setAuth(data) {
+    _authenticated = data;
 }
 
 /* Flux Store Creation */
@@ -82,9 +85,8 @@ const Store = assign({}, BaseStore, {
                 break;
             case 'LOGGED_IN':
                 if (action.data) {
-                    setUser(action.data);
+                    setAuth(action.data);
                 }
-                logIn();
                 break;
             case 'LOGGED_OUT':
                 logOut();
