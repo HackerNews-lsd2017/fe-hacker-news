@@ -6,16 +6,11 @@ let baseUrl = Constants.baseUrl;
 
 export default {
     getPosts(limit) {
-        axios.get(`${baseUrl}/getPosts?limit=`+limit).then(response => {
+        axios.get(`${baseUrl}/getPosts?limit=` + limit).then(response => {
             console.log("got posts", response);
             Dispatcher.handleServerAction({
-                type: 'FETCHED_POSTS'
-            });
-        }).catch(error => {
-            console.log("ERROR: get posts");
-            Dispatcher.handleServerAction({
-                type: 'ERROR_FETCHED_POSTS',
-                error: error
+                type: 'FETCHED_POSTS',
+                data: response.data
             });
         });
     }
