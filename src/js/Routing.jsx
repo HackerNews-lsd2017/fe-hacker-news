@@ -34,9 +34,9 @@ const Home = () => (
 const AppRoutes = (
     <BrowserRouter>
         <App>
-             <Route exact path="/" component={List}/>
+            <Route exact path="/" component={List}/>
 
-             <Route path="/post/:postId" component={PostDetails}/>
+            <Route path="/post/:postId" component={PostDetails}/>
         </App>
     </BrowserRouter>
 );
