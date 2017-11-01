@@ -18,12 +18,6 @@ class App extends Component {
         let params = {
             echo: 'Server is running'
         };
-
-        axios.get(`${host}/test`, {params: params}).then(response => {
-            this.setTitle(response.data);
-        }).catch(error => {
-            this.setTitle('Error');
-        });
     }
 
     setTitle = (title) => {
@@ -50,6 +44,11 @@ class App extends Component {
                     </a>
                 </div>
                 <img src={image1} className="main-image" alt="image1"/>
+
+                <div>
+                    <h1>Render here:</h1>
+                    {this.props.children}
+                </div>
             </div>
         );
     }
