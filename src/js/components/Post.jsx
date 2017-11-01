@@ -23,6 +23,7 @@ export default class extends React.Component {
             <div className="story-container">
                 <div className="title">
                     <span>{index + ". "}</span>
+                    <span>&#9650;&nbsp;</span>
                     <a href={data.post_url}>{data.post_title}</a>
                     <span>
                         {" (" + this._getDomain(data.post_url) + "." +

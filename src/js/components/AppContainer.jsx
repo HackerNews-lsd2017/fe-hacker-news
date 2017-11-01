@@ -2,7 +2,8 @@ import React from 'react';
 import PostActions from '../actions/PostActionCreators';
 import {Link} from 'react-router-dom';
 import PostStore from '../stores/PostStore';
-import PostStory from './PostStory';
+import Submit from './Submit';
+import Newest from './Newest';
 import '../../styles/App.css';
 
 export default class extends React.Component {
@@ -83,9 +84,13 @@ export default class extends React.Component {
                         
                     </div>
                     <div className="app-content">
-                        {posts.map((post, index) =>
-                            <PostStory key={index} index={index + 1} data={post} />
-                        )}
+                        <div className="newest-posts">
+                            <Newest posts={posts} />
+                        </div>
+
+                        <div className="submit-new-post">
+                            <Submit />
+                        </div>
                     </div>
                 </div>
             </div>
