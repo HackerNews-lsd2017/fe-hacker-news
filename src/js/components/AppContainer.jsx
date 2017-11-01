@@ -1,8 +1,8 @@
 import React from 'react';
-import actions from '../actions/actions';
+import PostActions from '../actions/PostActionCreators';
 import {Link} from 'react-router-dom';
-import DocumentStore from '../stores/DocumentStore';
-import Story from './Story';
+import PostStore from '../stores/PostStore';
+import PostStory from './PostStory';
 import '../../styles/App.css';
 
 export default class extends React.Component {
@@ -11,7 +11,7 @@ export default class extends React.Component {
     }
 
     componentDidMount = () => {
-        DocumentStore.addChangeListener(this.onChange);
+        PostStore.addChangeListener(this.onChange);
         this.loadData();
     }
 
@@ -21,12 +21,12 @@ export default class extends React.Component {
 
     onChange = () => {
         this.setState({
-            posts: DocumentStore.getPosts()
+            posts: PostStore.getPosts()
         });
     }
 
     getPosts = () => {
-        actions.getPosts(10);
+        PostActions.getPosts(10);
     }
 
     _onBackClick = () => {
@@ -84,13 +84,11 @@ export default class extends React.Component {
                     </div>
                     <div className="app-content">
                         {posts.map((post, index) =>
-                            <Story key={index} index={index + 1} data={post} />
+                            <PostStory key={index} index={index + 1} data={post} />
                         )}
                     </div>
                 </div>
             </div>
-
         )
-   
     }
 }
