@@ -13,9 +13,9 @@ function setPosts(data) {
     _posts = data;
 }
 
-function setUser(user) {
-    _user = user;
-}
+// function setUser(user) {
+//     _user = user;
+// }
 
 function updateUser(data) {
     _user = assign(_user, data);
@@ -25,9 +25,9 @@ function updateNewUser(data) {
     _newUser = assign(_newUser, data);
 }
 
-function logIn() {
-    _authenticated = true;
-}
+// function logIn() {
+//     _authenticated = true;
+// }
 
 function logOut() {
     _authenticated = false;

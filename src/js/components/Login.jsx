@@ -2,7 +2,7 @@ import React from 'react';
 import '../../styles/App.css';
 import Store from '../stores/PostStore';
 import actions from '../actions/PostActionCreators';
-import { Redirect } from 'react-router';
+import {Redirect} from 'react-router';
 
 export default class extends React.Component {
     state = {
