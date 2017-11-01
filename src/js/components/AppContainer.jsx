@@ -9,12 +9,17 @@ import '../../styles/App.css';
 export default class extends React.Component {
     state = {
         posts: [],
-        user: {}
+        user: {},
+        authenticated: PostStore.getAuth()
     }
 
     componentDidMount = () => {
         PostStore.addChangeListener(this.onChange);
         this.loadData();
+    }
+
+    componentWillUnmount = () => {
+        PostStore.removeChangeListener(this.onChange);
     }
 
     loadData = () => {
@@ -24,7 +29,8 @@ export default class extends React.Component {
     onChange = () => {
         this.setState({
             posts: PostStore.getPosts(),
-            user: PostStore.getUser()
+            user: PostStore.getUser(),
+            authenticated: PostStore.getAuth()
         });
     }
 
@@ -32,16 +38,12 @@ export default class extends React.Component {
         PostActions.getPosts(15);
     }
 
-    _onBackClick = () => {
-        let {router} = this.context;
-
-        router.push({
-            name: 'casefile-creator'
-        });
+    logOut = () => {
+        PostActions.logOut();
     }
 
     render = () => {
-        let {posts, user} = this.state;
+        let {posts, user, authenticated} = this.state;
 
         return (
             <div className="app">
@@ -73,7 +75,11 @@ export default class extends React.Component {
                                 </span>
                             </td>
                             <td className="header-right">
+                            {authenticated ?
+                                <div onClick={this.logOut}>logout</div>
+                                :
                                 <Link to="/login">login</Link>
+                            }
                             </td>
                         </tr>
                     </tbody>

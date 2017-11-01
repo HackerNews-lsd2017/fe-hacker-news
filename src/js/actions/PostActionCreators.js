@@ -23,7 +23,7 @@ export default {
     },
 
     registerUser(user) {
-    	let payload = JSON.stringify(user)
+        let payload = {user_name: user.username, user_pwd: user.password};
     	axios.post(`${baseUrl}/addUser`, payload).then(response => {
             Dispatcher.handleServerAction({
                 type: 'ADDED_USER',
@@ -33,12 +33,19 @@ export default {
     },
 
     logIn(user) {
-    	let payload = JSON.stringify(user)
+        let payload = {user_name: user.username, user_pwd: user.password};
     	axios.post(`${baseUrl}/logIn`, payload).then(response => {
             Dispatcher.handleServerAction({
                 type: 'LOGGED_IN',
                 data: response.data
             });
+        });
+    },
+
+    logOut() {
+        console.log("action logout")
+        Dispatcher.handleViewAction({
+            type: 'LOGGED_OUT'
         });
     },
 
