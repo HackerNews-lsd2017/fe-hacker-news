@@ -12,9 +12,9 @@ function setPosts(data) {
     _posts = data;
 }
 
-function setUser(user) {
-    _user = user;
-}
+// function setUser(user) {
+//     _user = user;
+// }
 
 function updateUser(data) {
     _user = assign(_user, data);
@@ -47,6 +47,11 @@ const Store = assign({}, BaseStore, {
                 }
                 break;
             case 'ADDED_USER':
+                if (action.data) {
+                    setPosts(action.data);
+                }
+                break;
+            case 'ADDED_POST':
                 if (action.data) {
                     setPosts(action.data);
                 }

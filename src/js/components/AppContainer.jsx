@@ -8,7 +8,8 @@ import '../../styles/App.css';
 
 export default class extends React.Component {
     state = {
-        posts: []
+        posts: [],
+        user: {}
     }
 
     componentDidMount = () => {
@@ -22,12 +23,13 @@ export default class extends React.Component {
 
     onChange = () => {
         this.setState({
-            posts: PostStore.getPosts()
+            posts: PostStore.getPosts(),
+            user: PostStore.getUser()
         });
     }
 
     getPosts = () => {
-        PostActions.getPosts(10);
+        PostActions.getPosts(15);
     }
 
     _onBackClick = () => {
@@ -39,7 +41,7 @@ export default class extends React.Component {
     }
 
     render = () => {
-    let {posts} = this.state;
+        let {posts, user} = this.state;
 
         return (
             <div className="app">
@@ -88,9 +90,11 @@ export default class extends React.Component {
                             <Newest posts={posts} />
                         </div>
 
-                        <div className="submit-new-post">
-                            <Submit />
-                        </div>
+                        {user.username ? 
+                            <div className="submit-new-post">
+                                <Submit />
+                            </div>
+                        : null}
                     </div>
                 </div>
             </div>
