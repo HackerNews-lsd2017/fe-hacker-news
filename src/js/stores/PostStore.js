@@ -2,7 +2,6 @@ import Dispatcher from '../Dispatcher';
 import BaseStore from '../BaseStore';
 import Constants from '../Constants';
 import assign from 'object-assign';
-import lodash from 'lodash';
 
 let _posts = [];
 
@@ -20,7 +19,7 @@ const Store = assign({}, BaseStore, {
     dispatcherIndex: Dispatcher.register(function(payload) {
         let action = payload.action;
         switch (action.type) {
-            case 'FETCHED_POSTS':
+            case Constants.ActionTypes.FETCHED_POSTS:
                 if (action.data) {
                     setPosts(action.data);
                 }
