@@ -1,17 +1,36 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+
 import actions from '../actions/actions';
-import logo from '../../img/logo.png';
+import DocumentStore from '../stores/DocumentStore';
+import Story from './Story';
+
 import '../../styles/App.css';
+
+import logo from '../../img/logo.png';
 import image1 from '../../img/image1.jpg'
 
 export default class extends React.Component {
-
-    static propTypes = {
-        prop: PropTypes.object
+    state = {
+        posts: []
     }
 
-    getPosts  = () => {
+    componentDidMount = () => {
+        DocumentStore.addChangeListener(this.onChange);
+        this.loadData();
+    }
+
+    loadData = () => {
+        this.getPosts();
+    }
+
+    onChange = () => {
+        this.setState({
+            posts: DocumentStore.getPosts()
+        });
+    }
+
+    getPosts = () => {
         actions.getPosts(10);
     }
 
@@ -23,19 +42,19 @@ export default class extends React.Component {
         });
     }
 
-    render() {
+    render = () => {
+        let {posts} = this.state;
+
         return (
             <div className="app">
                 <div className="app-header">
-                    <img src={logo} className="app-logo" alt="logo" />
-                    <h2>Hacker Wubadubadubdub News</h2>
-                    <h3>Pickle Rick!</h3>
+                    
                 </div>
                 <div className="app-content">
-                    <p>Click the button below to check if this application is connected to the server.</p>
-                    <button className="ping-server-button" onClick={this.getPosts}>Get posts</button>
+                    {posts.map((post, index) =>
+                        <Story key={index} index={index + 1} data={post} />
+                    )}
                 </div>
-                <img src={image1} className="main-image" alt="image1"/>
             </div>
         )
    
