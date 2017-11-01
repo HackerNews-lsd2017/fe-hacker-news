@@ -35,7 +35,7 @@ export default class extends React.Component {
     }
 
     getPosts = () => {
-        PostActions.getPosts(15);
+        PostActions.getPosts(10);
     }
 
     logOut = () => {
@@ -69,7 +69,7 @@ export default class extends React.Component {
                                             <span> | </span>
                                             <Link to="/login">jobs</Link>
                                             <span> | </span>
-                                            <Link to="/login">submit</Link>
+                                            <Link to={user.username ? "/submit" : "/login"}>submit</Link>
                                         </div>
                                     </b>
                                 </span>
@@ -95,12 +95,6 @@ export default class extends React.Component {
                         <div className="newest-posts">
                             <Newest posts={posts} />
                         </div>
-
-                        {user.username ? 
-                            <div className="submit-new-post">
-                                <Submit />
-                            </div>
-                        : null}
                     </div>
                 </div>
             </div>
