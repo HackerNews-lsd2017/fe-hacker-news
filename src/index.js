@@ -1,5 +1,3 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
 import './styles/index.css';
 import Routing from './js/Routing';
 // import App from './js/App';

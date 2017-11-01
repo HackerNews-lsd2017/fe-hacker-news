@@ -2,58 +2,47 @@ html, body {
     height:100%;
     width:100%;
     margin:0;
-    padding:0;
+    padding:0.28em;
+}
+
+a {
+  text-decoration: none;
+  color: black;
 }
 
 .app {
-    text-align: center;
+    /*text-align: center;*/
+    width:84.32%;
+    margin: auto;
 }
 
 /* application header */
 .app-header {
-    background-color: #222;
-    height: 150px;
-    color: white;
-    padding-bottom: 40px;
-    padding-top: 25px;
+  width: 100%;
+  background: #ff6600;
+  font-size: 1em;
 }
 
-/* application content */
-.app-content {
-    padding-top: 10px;
-    padding-bottom: 10px;
-    font-size: large;
+.header-content {
+  display: inline-block;
+  padding-left: 0.4em;
+  font-weight: normal;
+  }
+
+.logo {
+  display: inline-block;
 }
 
-/* logo */
-.app-logo {
-    animation: app-logo-spin infinite 20s linear;
-    height: 80px;
+.header-right {
+  float: right;
 }
 
-@keyframes app-logo-spin {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
+.content {
+  width: 100%;
+  height: 100%;
 }
 
-/* rick and morty fan art */
-.main-image {
-  height: 400px;
-}
-
-/* buttons */
-.ping-server-button {
-  background-color: #A9A9A9;
-  height: 45px;
-  width: 100px;
-  color: white;
-}
-
-/* feedback message */
-.error {
-  color: red;
-}
-
-.success {
-  color: green;
+.pass-recovery {
+  color: blue;
+  text-decoration: underline;
 }

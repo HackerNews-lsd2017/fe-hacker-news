@@ -1,5 +1,4 @@
 import {Dispatcher} from 'flux';
-import Constants from './Constants';
 import assign from 'object-assign';
 
 /**

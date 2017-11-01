@@ -1,16 +1,9 @@
-import PropTypes from 'prop-types';
 import React from 'react';
 import actions from '../actions/actions';
-import logo from '../../img/logo.png';
 import '../../styles/App.css';
-import image1 from '../../img/image1.jpg'
+import {Link} from 'react-router-dom';
 
 export default class extends React.Component {
-
-    static propTypes = {
-        prop: PropTypes.object
-    }
-
     getPosts  = () => {
         actions.getPosts(10);
     }
@@ -23,19 +16,45 @@ export default class extends React.Component {
         });
     }
 
-    render() {
+    render = () => {
         return (
             <div className="app">
-                <div className="app-header">
-                    <img src={logo} className="app-logo" alt="logo" />
-                    <h2>Hacker Wubadubadubdub News</h2>
-                    <h3>Pickle Rick!</h3>
+                <table className="app-header">
+                    <tbody>
+                        <tr>
+                            <td className="header-logo"></td>
+                            <td className="header-left">
+                                <span className="page-top">
+                                    <b>
+                                        <div className="logo">
+                                        <img src="/public/logo.png" alt=""/>
+                                            <Link to="/ ">Hacker News</Link>
+                                        </div>
+                                        <div className="header-content">
+                                            <Link to="/login">new</Link>
+                                            <span> | </span>
+                                            <Link to="/login">comments</Link>
+                                            <span> | </span>
+                                            <Link to="/login">show</Link>
+                                            <span> | </span>
+                                            <Link to="/login">ask</Link>
+                                            <span> | </span>
+                                            <Link to="/login">jobs</Link>
+                                            <span> | </span>
+                                            <Link to="/login">submit</Link>
+                                        </div>
+                                    </b>
+                                </span>
+                            </td>
+                            <td className="header-right">
+                                <Link to="/login">login</Link>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div className="content">
+                    {this.props.children}
                 </div>
-                <div className="app-content">
-                    <p>Click the button below to check if this application is connected to the server.</p>
-                    <button className="ping-server-button" onClick={this.getPosts}>Get posts</button>
-                </div>
-                <img src={image1} className="main-image" alt="image1"/>
             </div>
         )
    
