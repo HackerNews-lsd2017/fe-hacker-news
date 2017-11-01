@@ -14,6 +14,14 @@ export default {
         });
     },
 
+    submitPost(post) {
+        axios.post(`${baseUrl}/post`, post).then(response => {
+            Dispatcher.handleServerAction({
+                type: 'ADDED_POST'
+            });
+        });
+    },
+
     registerUser(user) {
     	let payload = JSON.stringify(user)
     	axios.post(`${baseUrl}/addUser`, payload).then(response => {
