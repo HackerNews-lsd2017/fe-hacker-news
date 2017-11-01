@@ -2,7 +2,6 @@ import React from 'react';
 import PostActions from '../actions/PostActionCreators';
 import {Link} from 'react-router-dom';
 import PostStore from '../stores/PostStore';
-import Submit from './Submit';
 import Newest from './Newest';
 import '../../styles/App.css';
 

@@ -1,6 +1,5 @@
 import React from 'react';
 import PostActions from '../actions/PostActionCreators';
-import {Redirect} from 'react-router';
 import PostStore from '../stores/PostStore';
 import {Link} from 'react-router-dom';
 
