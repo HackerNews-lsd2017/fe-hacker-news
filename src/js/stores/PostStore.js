@@ -10,6 +10,7 @@ let _newUser = {username: "", password: ""};
 
 /* Private Functions */
 function setPosts(data) {
+    // _posts.concat(data);
     _posts = data;
 }
 
