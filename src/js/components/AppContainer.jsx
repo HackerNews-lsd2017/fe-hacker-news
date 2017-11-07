@@ -89,7 +89,6 @@ export default class extends React.Component {
                                         <span>&nbsp;logout</span>
                                     </div>
                                 </div>
-                                
                                 :
                                 <div>
                                     <Link to="/login">login</Link>
