@@ -8,12 +8,24 @@ export default class extends React.Component {
         index: PropTypes.number
     }
 
-    _getDomain = (domain) => {
-        return parseDomain(domain).domain;
+    _getDomain = () => {
+        let url = this.props.data.post_url;
+
+        if (parseDomain(url)) {
+            return " (" + parseDomain(url).domain + "." + parseDomain(url).tld + ")";
+        } else {
+            return '';
+        }
     }
-    
-    _getTld = (domain) => {
-        return parseDomain(domain).tld;
+
+    _getSubtext = () => {
+        let {data} = this.props;
+
+        return data.post_points + " " +
+            "by " + data.username + " " +
+            data.post_time + " hours ago " +
+            " | hide | " +
+            data.post_comments + " comments"
     }
 
     render() {
@@ -24,20 +36,10 @@ export default class extends React.Component {
                 <div className="title">
                     <span>{index + ". "}</span>
                     <span>&#9650;&nbsp;</span>
-                    <a href={data.post_url}>{data.post_title}</a>
-                    <span>
-                        {" (" + this._getDomain(data.post_url) + "." +
-                        this._getTld(data.post_url) + ")"}
-                    </span>
+                    <a href={data.post_url}>{data.post_title ? data.post_title : ''}</a>
+                    <span>{this._getDomain()}</span>
                 </div>
-                <div className="substext">
-                    {data.post_points + " " +
-                    "by " +
-                    data.username + " " +
-                    data.post_time + " hours ago" +
-                    " | hide | " +
-                    data.post_comments + " comments"}
-                </div>
+                <div className="substext">{this._getSubtext()}</div>
             </div>
         );
     }

@@ -9,7 +9,8 @@ export default class extends React.Component {
     state = {
         posts: [],
         user: {},
-        authenticated: PostStore.getAuth()
+        authenticated: PostStore.getAuth(),
+        loadMore: 1
     }
 
     componentDidMount = () => {
@@ -33,8 +34,13 @@ export default class extends React.Component {
         });
     }
 
+    // @todo: it's a hack - waiting for the backend
     getPosts = () => {
-        PostActions.getPosts(10);
+        let {loadMore} = this.state;
+        PostActions.getPosts(30 * loadMore);
+        this.setState({
+            loadMore: loadMore + 1
+        });
     }
 
     logOut = () => {
@@ -104,6 +110,10 @@ export default class extends React.Component {
                         <div className="newest-posts">
                             <Newest posts={posts} />
                         </div>
+                    </div>
+
+                    <div className="app-footer">
+                        <button onClick={this.loadData}>More</button>
                     </div>
                 </div>
             </div>
