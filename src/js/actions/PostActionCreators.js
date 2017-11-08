@@ -25,11 +25,14 @@ export default {
     registerUser(user) {
         let payload = {user_name: user.username, user_pwd: user.password};
     	axios.post(`${baseUrl}/addUser`, payload).then(response => {
+                console.log("registered", response);
             Dispatcher.handleServerAction({
                 type: 'ADDED_USER',
                 data: response.data
             });
-        });
+        }).then(() => {
+                this.logIn(user);
+            });
     },
 
     logIn(user) {

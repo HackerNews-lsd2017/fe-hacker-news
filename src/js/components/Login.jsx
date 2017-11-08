@@ -3,6 +3,7 @@ import '../../styles/App.css';
 import Store from '../stores/PostStore';
 import actions from '../actions/PostActionCreators';
 import {Redirect} from 'react-router';
+import {Link} from 'react-router-dom';
 
 export default class extends React.Component {
     state = {
@@ -56,7 +57,7 @@ export default class extends React.Component {
 
     render() {
         let {user, newUser, authenticated} = this.state;
-        console.log("authenticated", authenticated);
+
         return (
             <div>
                 {authenticated ? 
@@ -98,7 +99,9 @@ export default class extends React.Component {
                     </div>
                     <br/>
 
-                    <button onClick={this.logIn}>login</button>
+                    <Link to="/">
+                        <button onClick={this.logIn}>login</button>
+                    </Link>
                     <br/>
                     <br/>
 
@@ -144,7 +147,9 @@ export default class extends React.Component {
                         <br/>
                         
                         <div>
-                            <button onClick={this.registerUser}>create account</button>
+                            <Link to="/">
+                                <button onClick={this.registerUser}>create account</button>
+                            </Link>
                         </div>
                     </div>
                 </div>

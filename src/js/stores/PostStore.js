@@ -35,6 +35,7 @@ function logOut() {
 }
 
 function setAuth(data) {
+    console.log(data);
     _authenticated = data;
 }
 
@@ -66,7 +67,8 @@ const Store = assign({}, BaseStore, {
                 break;
             case 'ADDED_USER':
                 if (action.data) {
-                    setPosts(action.data);
+                    // setPosts(action.data);
+                    // setAuth(action.data);
                 }
                 break;
             case 'ADDED_POST':
