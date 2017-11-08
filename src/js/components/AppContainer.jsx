@@ -59,10 +59,12 @@ export default class extends React.Component {
                             <td className="header-left">
                                 <span className="page-top">
                                     <b>
-                                        <div className="logo">
-                                        <img src="/public/logo.png" alt=""/>
-                                            <Link to="/ ">Hacker News</Link>
-                                        </div>
+                                        <Link to="/">
+                                            <div className="logo">
+                                                <img src="https://news.ycombinator.com/y18.gif" alt=""/>
+                                            </div>
+                                            Hacker News
+                                        </Link>
                                         <div className="header-content">
                                             <Link to="/login">new</Link>
                                             <span> | </span>
