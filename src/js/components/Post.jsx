@@ -34,12 +34,12 @@ export default class extends React.Component {
         return (
             <div className="story-container">
                 <div className="title">
-                    <span>{index + ". "}</span>
-                    <span>&#9650;&nbsp;</span>
+                    <span className="subtext count">{index + ". "}</span>
+                    <span className="subtext">&#9650;&nbsp;</span>
                     <a href={data.post_url}>{data.post_title ? data.post_title : ''}</a>
-                    <span>{this._getDomain()}</span>
+                    <span className="subtext domain">{this._getDomain()}</span>
                 </div>
-                <div className="substext">{this._getSubtext()}</div>
+                <div className="subtext">{this._getSubtext()}</div>
             </div>
         );
     }
