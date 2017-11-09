@@ -30,6 +30,7 @@ export default class extends React.Component {
         });
     }
 
+    // @todo: it's a hack - waiting for the backend
     loadData = () => {
         let {loadMore} = this.state;
         PostActions.getPosts(30 * loadMore);

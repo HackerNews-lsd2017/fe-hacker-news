@@ -19,25 +19,29 @@ export default class extends React.Component {
     }
 
     _getSubtext = () => {
-        let {data} = this.props;
+        let {post_points, username, post_time, post_comments} = this.props.data;
 
-        return data.post_points + " " +
-            "by " + data.username + " " +
-            data.post_time + " hours ago " +
-            " | hide | " +
-            data.post_comments + " comments"
+        return (
+            <div>
+                <span>{(post_points || 0)  + " points "}</span>
+                <span>{"by " + username + " "}</span>
+                <span>{post_time + " hours ago "}</span>
+                <span>{" | hide | "}</span>
+                <span>{(post_comments || 0) + " comments"}</span>
+            </div>
+        )
     }
 
     render() {
         let {data, index} = this.props;
 
         return (
-            <div className="story-container">
+            <div className="post">
                 <div className="title">
-                    <span className="subtext count">{index + ". "}</span>
-                    <span className="subtext">&#9650;&nbsp;</span>
-                    <a href={data.post_url}>{data.post_title ? data.post_title : ''}</a>
-                    <span className="subtext domain">{this._getDomain()}</span>
+                    <span className="title-text count">{index + ". "}</span>
+                    <span className="title-text">&#9650;&nbsp;</span>
+                    <a href={data.post_url}>{data.post_title || ''}</a>
+                    <span className="title-text domain">{this._getDomain()}</span>
                 </div>
                 <div className="subtext">{this._getSubtext()}</div>
             </div>
