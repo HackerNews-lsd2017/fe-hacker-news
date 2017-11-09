@@ -20,7 +20,8 @@ export default class extends React.Component {
                 </div>
 
                 <div className="app-footer">
-                    <button onClick={loadPosts}>More</button>
+                    <p className="more-button" onClick={loadPosts}>More</p>
+                    <hr />
                 </div>
             </div>
         );

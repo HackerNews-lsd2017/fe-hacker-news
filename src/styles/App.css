@@ -1,3 +1,4 @@
+/*general*/
 html, body {
     font-family: Verdana, Geneva, sans-serif;
     font-size: 11pt;
@@ -8,31 +9,10 @@ html, body {
     padding:0.28em;
 }
 
-a {
-  text-decoration: none;
-  color: black;
-}
-
-.subtext {
-  color: #828282;
-  font-size: 9pt;
-}
-
-.domain {
-  font-size: 8pt;
-}
-
-.count {
-    font-size: 11pt;
-}
-
 .app {
     width: 84.32%;
-    /*margin-left: 90px;*/
     margin: auto;
     text-align: left;
-    background-color: #F5F6EE;
-
 }
 
 /* application header */
@@ -40,14 +20,48 @@ a {
   width: 100%;
   background: #ff6600;
   font-size: 1em;
-  /*margin-bottom: 10px;*/
 }
 
 .header-content {
-  display: inline-block;
-  padding-left: 0.4em;
-  font-weight: normal;
+    display: inline-block;
+    padding-left: 0.4em;
+    font-weight: normal;
   }
+
+/* application content */
+.app-content {
+  background-color: #F5F6EE;
+  padding-top: 10px;
+}
+
+.newest-posts {
+  padding-left: 10px; 
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+.title-text {
+  color: #828282;
+  font-size: 10px;
+  text-align: right;
+}
+
+.domain {
+  font-size: 10px;
+}
+
+.count {
+    font-size: 15px;
+}
+
+.subtext {
+  color: #828282;
+  font-size: 10px;
+  margin-left: 33px;
+}
 
 .logo {
   display: inline-block;
@@ -76,7 +90,26 @@ a {
 }
 
 /* Story */
+.post {
+  padding-bottom: 2px;
+}
 
-.story-container {
-  padding-bottom: 20px;
+.app-footer {
+  padding-bottom: 30px;
+}
+
+.more-button {
+  cursor: pointer;
+  color: #828282;
+  margin-left: 33px;
+  padding-left: 10px; 
+}
+
+hr {
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 2px solid #ff6600;
+  margin: 1em 0;
+  padding: 0;
 }
