@@ -1,6 +1,6 @@
 import React from 'react';
-import PostActions from '../actions/PostActionCreators';
-import PostStore from '../stores/PostStore';
+import Actions from '../actions/PostActionCreators';
+import Store from '../stores/PostStore';
 import Header from './Header';
 import Content from './Content';
 import '../../styles/App.css';
@@ -9,38 +9,38 @@ export default class extends React.Component {
     state = {
         posts: [],
         user: {},
-        authenticated: PostStore.getAuth(),
+        authenticated: Store.getAuth(),
         loadMore: 1
     }
 
     componentDidMount = () => {
-        PostStore.addChangeListener(this.onChange);
+        Store.addChangeListener(this.onChange);
         this.loadData();
     }
 
     componentWillUnmount = () => {
-        PostStore.removeChangeListener(this.onChange);
+        Store.removeChangeListener(this.onChange);
     }
 
     onChange = () => {
         this.setState({
-            posts: PostStore.getPosts(),
-            user: PostStore.getUser(),
-            authenticated: PostStore.getAuth()
+            posts: Store.getPosts(),
+            user: Store.getUser(),
+            authenticated: Store.getAuth()
         });
     }
 
     // @todo: it's a hack - waiting for the backend
     loadData = () => {
         let {loadMore} = this.state;
-        PostActions.getPosts(30 * loadMore);
+        Actions.getPosts(30 * loadMore);
         this.setState({
             loadMore: loadMore + 1
         });
     }
 
     logOut = () => {
-        PostActions.logOut();
+        Actions.logOut();
     }
 
     render = () => {
