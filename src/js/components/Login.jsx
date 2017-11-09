@@ -1,7 +1,7 @@
 import React from 'react';
 import '../../styles/App.css';
 import Store from '../stores/PostStore';
-import actions from '../actions/PostActionCreators';
+import Actions from '../actions/PostActionCreators';
 import {Redirect} from 'react-router';
 import {Link} from 'react-router-dom';
 
@@ -33,7 +33,7 @@ export default class extends React.Component {
         
         user[target.name] = target.value;
 
-        actions.updateUser(user);
+        Actions.updateUser(user);
     }
 
     updateNewUser = (event) => {
@@ -42,17 +42,17 @@ export default class extends React.Component {
         
         user[target.name] = target.value;
 
-        actions.updateNewUser(user);
+        Actions.updateNewUser(user);
     }
 
     registerUser = () => {
         let user = Store.getNewUser()
-        actions.registerUser(user)
+        Actions.registerUser(user)
     }
 
     logIn = () => {
         let user = Store.getUser()
-        actions.logIn(user)
+        Actions.logIn(user)
     }
 
     render() {
