@@ -14,6 +14,15 @@ export default {
         });
     },
 
+    getPostsBySite(site) {
+        axios.get(`${baseUrl}/from?site=` + site).then(response => {
+            Dispatcher.handleServerAction({
+                type: Constants.ActionTypes.FETCHED_POSTS,
+                data: response.data
+            });
+        });
+    },
+
     submitPost(post) {
         axios.post(`${baseUrl}/post`, post).then(response => {
             Dispatcher.handleServerAction({

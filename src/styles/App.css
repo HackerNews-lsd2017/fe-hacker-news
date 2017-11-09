@@ -51,6 +51,11 @@ a {
 
 .domain {
   font-size: 10px;
+  cursor: pointer;
+}
+
+.domain:hover {
+  text-decoration: underline;
 }
 
 .count {
@@ -71,7 +76,6 @@ a {
   margin-top: 2px;
   margin-bottom: 2px;
   margin-right: 4px;
-  background-color: blue;
 }
 
 .header-right {
