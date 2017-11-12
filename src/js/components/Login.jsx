@@ -21,7 +21,6 @@ export default class extends React.Component {
     }
 
     onChange = () => {
-        console.log("onchange");
         this.setState({user: Store.getUser()});
         this.setState({newUser: Store.getNewUser()});
         this.setState({authenticated: Store.getAuth()});
@@ -91,7 +90,7 @@ export default class extends React.Component {
                                         <input onChange={this.updateUser}
                                         name="password"
                                         type="password"
-                                        value={user.password}/>
+                                        value={user.password || ''}/>
                                     </td>
                                 </tr>
                             </tbody>

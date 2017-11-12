@@ -5,11 +5,12 @@ import {Link} from 'react-router-dom';
 export default class extends React.Component {
     static propTypes = {
         authenticated: PropTypes.bool,
-        user: PropTypes.object
+        user: PropTypes.object,
+        logOut: PropTypes.func
     }
 
     render() {
-        let {authenticated, user} = this.props;
+        let {authenticated, user, logOut} = this.props;
 
         return (
             <table className="app-header">
@@ -26,17 +27,17 @@ export default class extends React.Component {
                                         Hacker News
                                     </Link>
                                     <div className="header-content">
-                                        <Link to="/login">new</Link>
+                                        <Link to="">new</Link>
                                         <span> | </span>
-                                        <Link to="/login">comments</Link>
+                                        <Link to="">comments</Link>
                                         <span> | </span>
-                                        <Link to="/login">show</Link>
+                                        <Link to="">show</Link>
                                         <span> | </span>
-                                        <Link to="/login">ask</Link>
+                                        <Link to="">ask</Link>
                                         <span> | </span>
-                                        <Link to="/login">jobs</Link>
+                                        <Link to="">jobs</Link>
                                         <span> | </span>
-                                        <Link to={user.username ? "/submit" : "/login"}>submit</Link>
+                                        <Link to={authenticated ? "/submit" : "/login"}>submit</Link>
                                     </div>
                                 </b>
                             </span>
@@ -46,8 +47,8 @@ export default class extends React.Component {
                             <div>
                                 <span style={{display: "inline-block"}}>{user.username}(1)&nbsp;|</span>
                                 <div style={{display: "inline-block"}}
-                                onClick={this.logOut}>
-                                    <span>&nbsp;logout</span>
+                                onClick={logOut}>
+                                    <span className="log-out">&nbsp;logout</span>
                                 </div>
                             </div>
                             :

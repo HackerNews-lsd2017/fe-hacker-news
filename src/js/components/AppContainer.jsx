@@ -15,6 +15,7 @@ export default class extends React.Component {
 
     componentDidMount = () => {
         Store.addChangeListener(this.onChange);
+        Actions.checkAuth();
         this.loadData();
     }
 
@@ -45,10 +46,9 @@ export default class extends React.Component {
 
     render = () => {
         let {posts, user, authenticated} = this.state;
-
         return (
             <div className="app">
-                <Header user={user} authenticated={authenticated}/>
+                <Header user={user} authenticated={authenticated} logOut={this.logOut}/>
                 <Content posts={posts} loadPosts={this.loadData}/>
             </div>
         )

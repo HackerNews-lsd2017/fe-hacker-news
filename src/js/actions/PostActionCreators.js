@@ -34,7 +34,6 @@ export default {
     registerUser(user) {
         let payload = {user_name: user.username, user_pwd: user.password};
     	axios.post(`${baseUrl}/addUser`, payload).then(response => {
-                console.log("registered", response);
             Dispatcher.handleServerAction({
                 type: 'ADDED_USER',
                 data: response.data
@@ -47,7 +46,6 @@ export default {
     logIn(user) {
         let payload = {user_name: user.username, user_pwd: user.password};
     	axios.post(`${baseUrl}/logIn`, payload).then(response => {
-                console.log("logged in", response);
             Dispatcher.handleServerAction({
                 type: 'LOGGED_IN',
                 data: response.data
@@ -56,7 +54,6 @@ export default {
     },
 
     logOut() {
-        console.log("action logout")
         Dispatcher.handleViewAction({
             type: 'LOGGED_OUT'
         });
@@ -73,6 +70,12 @@ export default {
     	Dispatcher.handleViewAction({
             type: 'NEW_USER_MODIFIED',
             data: user
+        });
+    },
+
+    checkAuth() {
+        Dispatcher.handleViewAction({
+            type: 'CHECK_AUTH'
         });
     }
 };
