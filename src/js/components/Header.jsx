@@ -1,11 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
+import Actions from '../actions/PostActionCreators';
 
 export default class extends React.Component {
     static propTypes = {
         authenticated: PropTypes.bool,
         user: PropTypes.object
+    }
+
+    logOut = () => {
+        console.log("logged ot");
+        Actions.logOut();
     }
 
     render() {
@@ -47,7 +53,7 @@ export default class extends React.Component {
                                 <span style={{display: "inline-block"}}>{user.username}(1)&nbsp;|</span>
                                 <div style={{display: "inline-block"}}
                                 onClick={this.logOut}>
-                                    <span>&nbsp;logout</span>
+                                    <span className="logout-button">&nbsp;logout</span>
                                 </div>
                             </div>
                             :

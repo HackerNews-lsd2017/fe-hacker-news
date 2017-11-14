@@ -39,10 +39,6 @@ export default class extends React.Component {
         });
     }
 
-    logOut = () => {
-        Actions.logOut();
-    }
-
     render = () => {
         let {posts, user, authenticated} = this.state;
 

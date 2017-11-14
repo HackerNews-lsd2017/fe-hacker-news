@@ -93,6 +93,10 @@ a {
   text-decoration: underline;
 }
 
+.logout-button {
+  cursor: pointer;
+}
+
 /* Story */
 .post {
   padding-bottom: 2px;
