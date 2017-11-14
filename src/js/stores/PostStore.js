@@ -10,13 +10,9 @@ let _newUser = {username: "", password: ""};
 
 /* Private Functions */
 function setPosts(data) {
-    // _posts.concat(data);
     _posts = data;
 }
 
-// function setUser(user) {
-//     _user = user;
-// }
 
 function updateUser(data) {
     _user = assign(_user, data);
@@ -26,17 +22,27 @@ function updateNewUser(data) {
     _newUser = assign(_newUser, data);
 }
 
-// function logIn() {
-//     _authenticated = true;
-// }
+function getLocalUser() {
+    let localUser = JSON.parse(localStorage.getItem('user'));
+    if(localUser) {
+        _user = localUser;
+        _authenticated = true;
+    }
+}
 
 function logOut() {
+    _user = {};
     _authenticated = false;
+    localStorage.removeItem('user');
 }
 
 function setAuth(data) {
-    console.log(data);
-    _authenticated = data;
+    if(data) {
+        let user = {username: data.user_name};
+        localStorage.setItem('user', JSON.stringify(user));
+        _user = {username: data.user_name};
+        _authenticated = true;
+    }
 }
 
 /* Flux Store Creation */
@@ -93,6 +99,9 @@ const Store = assign({}, BaseStore, {
                 break;
             case 'LOGGED_OUT':
                 logOut();
+                break;
+            case 'CHECK_AUTH':
+                getLocalUser();
                 break;
             default:
                 return;

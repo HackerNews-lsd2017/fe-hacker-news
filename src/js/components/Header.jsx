@@ -10,7 +10,6 @@ export default class extends React.Component {
     }
 
     logOut = () => {
-        console.log("logged ot");
         Actions.logOut();
     }
 
@@ -32,17 +31,17 @@ export default class extends React.Component {
                                         Hacker News
                                     </Link>
                                     <div className="header-content">
-                                        <Link to="/login">new</Link>
+                                        <Link to="">new</Link>
                                         <span> | </span>
-                                        <Link to="/login">comments</Link>
+                                        <Link to="">comments</Link>
                                         <span> | </span>
-                                        <Link to="/login">show</Link>
+                                        <Link to="">show</Link>
                                         <span> | </span>
-                                        <Link to="/login">ask</Link>
+                                        <Link to="">ask</Link>
                                         <span> | </span>
-                                        <Link to="/login">jobs</Link>
+                                        <Link to="">jobs</Link>
                                         <span> | </span>
-                                        <Link to={user.username ? "/submit" : "/login"}>submit</Link>
+                                        <Link to={authenticated ? "/submit" : "/login"}>submit</Link>
                                     </div>
                                 </b>
                             </span>
