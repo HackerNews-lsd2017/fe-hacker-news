@@ -93,6 +93,10 @@ a {
   text-decoration: underline;
 }
 
+.logout-button {
+  cursor: pointer;
+}
+
 /* Story */
 .post {
   padding-bottom: 2px;
@@ -116,8 +120,4 @@ hr {
   border-top: 2px solid #ff6600;
   margin: 1em 0;
   padding: 0;
-}
-
-.log-out {
-  cursor: pointer;
 }

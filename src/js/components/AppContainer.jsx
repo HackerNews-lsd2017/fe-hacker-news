@@ -40,15 +40,11 @@ export default class extends React.Component {
         });
     }
 
-    logOut = () => {
-        Actions.logOut();
-    }
-
     render = () => {
         let {posts, user, authenticated} = this.state;
         return (
             <div className="app">
-                <Header user={user} authenticated={authenticated} logOut={this.logOut}/>
+                <Header user={user} authenticated={authenticated}/>
                 <Content posts={posts} loadPosts={this.loadData}/>
             </div>
         )

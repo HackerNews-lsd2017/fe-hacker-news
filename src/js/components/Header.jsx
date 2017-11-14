@@ -1,16 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
+import Actions from '../actions/PostActionCreators';
 
 export default class extends React.Component {
     static propTypes = {
         authenticated: PropTypes.bool,
-        user: PropTypes.object,
-        logOut: PropTypes.func
+        user: PropTypes.object
+    }
+
+    logOut = () => {
+        Actions.logOut();
     }
 
     render() {
-        let {authenticated, user, logOut} = this.props;
+        let {authenticated, user} = this.props;
 
         return (
             <table className="app-header">
@@ -47,8 +51,8 @@ export default class extends React.Component {
                             <div>
                                 <span style={{display: "inline-block"}}>{user.username}(1)&nbsp;|</span>
                                 <div style={{display: "inline-block"}}
-                                onClick={logOut}>
-                                    <span className="log-out">&nbsp;logout</span>
+                                onClick={this.logOut}>
+                                    <span className="logout-button">&nbsp;logout</span>
                                 </div>
                             </div>
                             :
