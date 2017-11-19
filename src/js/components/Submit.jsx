@@ -29,7 +29,7 @@ export default class extends React.Component {
         let post = {
             post_title: this.state.newPost.postTitle,
             post_text: this.state.newPost.postText, 
-            hanesst_id: 4, 
+            hanesst_id: 0, 
             post_type: "story", 
             post_parent: -1,
             username: user.username,
