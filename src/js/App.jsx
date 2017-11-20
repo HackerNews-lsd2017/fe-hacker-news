@@ -4,9 +4,9 @@ export default class extends React.Component {
 
     render = () => {
         return (
-            <div className="app-container">
-                {this.props.children}
-            </div>
+                <div className="app-container">
+                    {this.props.children}
+                </div>
         )
    }
 }

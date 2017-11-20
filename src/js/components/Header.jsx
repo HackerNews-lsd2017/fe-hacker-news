@@ -49,11 +49,7 @@ export default class extends React.Component {
                         <td className="header-right">
                         {authenticated ?
                             <div>
-                                <span style={{display: "inline-block"}}>
-                                    <Link to="/user">
-                                        {user.username}(1)
-                                    </Link>&nbsp;|
-                                </span>
+                                <span style={{display: "inline-block"}}>{user.username}(1)&nbsp;|</span>
                                 <div style={{display: "inline-block"}}
                                 onClick={this.logOut}>
                                     <span className="logout-button">&nbsp;logout</span>
