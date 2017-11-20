@@ -1,15 +1,40 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import Newest from './Newest';
+import Store from '../stores/PostStore';
+import Actions from '../actions/PostActionCreators';
 
 export default class extends React.Component {
-    static propTypes = {
-        posts: PropTypes.array,
-        loadPosts: PropTypes.func
+    state = {
+        posts: [],
+        loadMore: 1
+    }
+
+    componentDidMount = () => {
+        Store.addChangeListener(this.onChange);
+        this.loadPosts();
+    }
+
+    componentWillUnmount = () => {
+        Store.removeChangeListener(this.onChange);
+    }
+
+    onChange = () => {
+        this.setState({
+            posts: Store.getPosts()
+        });
+    }
+
+        // @todo: it's a hack - waiting for the backend
+    loadPosts = () => {
+        let {loadMore} = this.state;
+        Actions.getPosts(30 * loadMore);
+        this.setState({
+            loadMore: loadMore + 1
+        });
     }
 
     render() {
-        let {posts, loadPosts} = this.props;
+        let {posts} = this.state;
 
         return (
             <div className="app-content">
@@ -20,7 +45,7 @@ export default class extends React.Component {
                 </div>
 
                 <div className="app-footer">
-                    <p className="more-button" onClick={loadPosts}>More</p>
+                    <p className="more-button" onClick={this.loadPosts}>More</p>
                     <hr />
                 </div>
             </div>
