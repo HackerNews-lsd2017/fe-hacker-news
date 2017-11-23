@@ -31,51 +31,25 @@ export default {
         });
     },
 
-    registerUser(user) {
-        let payload = {user_name: user.username, user_pwd: user.password};
-    	axios.post(`${baseUrl}/addUser`, payload).then(response => {
+    getComments() {
+        axios.get(`${baseUrl}/getComments?hanesst_id=` + 445).then(response => {
             Dispatcher.handleServerAction({
-                type: 'ADDED_USER',
-                data: response.data
-            });
-        }).then(() => {
-                this.logIn(user);
-            });
-    },
-
-    logIn(user) {
-        let payload = {user_name: user.username, user_pwd: user.password};
-    	axios.post(`${baseUrl}/logIn`, payload).then(response => {
-            Dispatcher.handleServerAction({
-                type: 'LOGGED_IN',
+                type: 'LOADED_COMMENTS',
                 data: response.data
             });
         });
     },
 
-    logOut() {
+    setPost() {
         Dispatcher.handleViewAction({
-            type: 'LOGGED_OUT'
+            type: 'POST_SET'
         });
     },
 
-    updateUser(user) {
-    	Dispatcher.handleViewAction({
-            type: 'USER_MODIFIED',
-            data: user
-        });
-    },
-
-    updateNewUser(user) {
-    	Dispatcher.handleViewAction({
-            type: 'NEW_USER_MODIFIED',
-            data: user
-        });
-    },
-
-    checkAuth() {
+    updateComment(data) {
         Dispatcher.handleViewAction({
-            type: 'CHECK_AUTH'
+            type: 'COMMENT_UPDATED',
+            data: data
         });
     }
 };

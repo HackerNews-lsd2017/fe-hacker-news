@@ -1,7 +1,7 @@
 import React from 'react';
 import Newest from './Newest';
-import Store from '../stores/PostStore';
-import Actions from '../actions/PostActionCreators';
+import PostStore from '../stores/PostStore';
+import PostActions from '../actions/PostActionCreators';
 
 export default class extends React.Component {
     state = {
@@ -10,24 +10,24 @@ export default class extends React.Component {
     }
 
     componentDidMount = () => {
-        Store.addChangeListener(this.onChange);
+        PostStore.addChangeListener(this.onChange);
         this.loadPosts();
     }
 
     componentWillUnmount = () => {
-        Store.removeChangeListener(this.onChange);
+        PostStore.removeChangeListener(this.onChange);
     }
 
     onChange = () => {
         this.setState({
-            posts: Store.getPosts()
+            posts: PostStore.getPosts()
         });
     }
 
         // @todo: it's a hack - waiting for the backend
     loadPosts = () => {
         let {loadMore} = this.state;
-        Actions.getPosts(30 * loadMore);
+        PostActions.getPosts(30 * loadMore);
         this.setState({
             loadMore: loadMore + 1
         });

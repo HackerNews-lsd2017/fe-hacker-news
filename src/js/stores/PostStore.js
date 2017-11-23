@@ -4,45 +4,27 @@ import Constants from '../Constants';
 import assign from 'object-assign';
 
 let _posts = [];
-let _authenticated = false;
-let _user = {username: "", password: ""};
-let _newUser = {username: "", password: ""};
+let _comments = [];
+let _comment = "";
+let _post = {};
 
 /* Private Functions */
 function setPosts(data) {
     _posts = data;
 }
 
-
-function updateUser(data) {
-    _user = assign(_user, data);
+function setComments(comments) {
+    console.log("comments", comments);
+    _comments = comments;
 }
 
-function updateNewUser(data) {
-    _newUser = assign(_newUser, data);
+function setPost(post) {
+    console.log("post", post);
+    _post = post;
 }
 
-function getLocalUser() {
-    let localUser = JSON.parse(localStorage.getItem('user'));
-    if(localUser) {
-        _user = localUser;
-        _authenticated = true;
-    }
-}
-
-function logOut() {
-    _user = {};
-    _authenticated = false;
-    localStorage.removeItem('user');
-}
-
-function setAuth(data) {
-    if(data) {
-        let user = {username: data.user_name};
-        localStorage.setItem('user', JSON.stringify(user));
-        _user = {username: data.user_name};
-        _authenticated = true;
-    }
+function updateComment(comment) {
+    _comment = comment;
 }
 
 /* Flux Store Creation */
@@ -51,16 +33,16 @@ const Store = assign({}, BaseStore, {
         return _posts;
     },
 
-    getUser() {
-        return _user;
+    getComments() {
+        return _comments;
     },
 
-    getNewUser() {
-        return _newUser;
+    getComment() {
+        return _comment;
     },
 
-    getAuth() {
-        return _authenticated;
+    getPost() {
+        return _post;
     },
 
     dispatcherIndex: Dispatcher.register(function(payload) {
@@ -71,37 +53,26 @@ const Store = assign({}, BaseStore, {
                     setPosts(action.data);
                 }
                 break;
-            case 'ADDED_USER':
-                if (action.data) {
-                    // setPosts(action.data);
-                    // setAuth(action.data);
-                }
-                break;
             case 'ADDED_POST':
                 if (action.data) {
                     setPosts(action.data);
                 }
                 break;
-            case 'USER_MODIFIED':
+            case 'LOADED_COMMENTS':
                 if (action.data) {
-                    updateUser(action.data);
+                    setPost(action.data.story);
+                    setComments(action.data.children);
                 }
                 break;
-            case 'NEW_USER_MODIFIED':
+            case 'POST_SET':
                 if (action.data) {
-                    updateNewUser(action.data);
+                    setPost(action.data);
                 }
                 break;
-            case 'LOGGED_IN':
+            case 'COMMENT_UPDATED':
                 if (action.data) {
-                    setAuth(action.data);
+                    updateComment(action.data);
                 }
-                break;
-            case 'LOGGED_OUT':
-                logOut();
-                break;
-            case 'CHECK_AUTH':
-                getLocalUser();
                 break;
             default:
                 return;

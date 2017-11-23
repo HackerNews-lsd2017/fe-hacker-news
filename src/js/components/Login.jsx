@@ -1,7 +1,7 @@
 import React from 'react';
 import '../../styles/App.css';
-import Store from '../stores/PostStore';
-import Actions from '../actions/PostActionCreators';
+import AuthStore from '../stores/AuthStore';
+import AuthActions from '../actions/AuthActionCreators';
 import {Redirect} from 'react-router';
 import {Link} from 'react-router-dom';
 
@@ -9,21 +9,21 @@ export default class extends React.Component {
     state = {
         user: {username: "", password: ""},
         newUser: {username: "", password: ""},
-        authenticated: Store.getAuth()
+        authenticated: false
     }
 
     componentDidMount = () => {
-        Store.addChangeListener(this.onChange);
+        AuthStore.addChangeListener(this.onChange);
     }
 
     componentWillUnmount = () => {
-        Store.removeChangeListener(this.onChange);
+        AuthStore.removeChangeListener(this.onChange);
     }
 
     onChange = () => {
-        this.setState({user: Store.getUser()});
-        this.setState({newUser: Store.getNewUser()});
-        this.setState({authenticated: Store.getAuth()});
+        this.setState({user: AuthStore.getUser()});
+        this.setState({newUser: AuthStore.getNewUser()});
+        this.setState({authenticated: AuthStore.getAuth()});
     }
 
     updateUser = (event) => {
@@ -32,7 +32,7 @@ export default class extends React.Component {
         
         user[target.name] = target.value;
 
-        Actions.updateUser(user);
+        AuthActions.updateUser(user);
     }
 
     updateNewUser = (event) => {
@@ -41,17 +41,17 @@ export default class extends React.Component {
         
         user[target.name] = target.value;
 
-        Actions.updateNewUser(user);
+        AuthActions.updateNewUser(user);
     }
 
     registerUser = () => {
-        let user = Store.getNewUser()
-        Actions.registerUser(user)
+        let user = AuthStore.getNewUser()
+        AuthActions.registerUser(user)
     }
 
     logIn = () => {
-        let user = Store.getUser()
-        Actions.logIn(user)
+        let user = AuthStore.getUser()
+        AuthActions.logIn(user)
     }
 
     render() {

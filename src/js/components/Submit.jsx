@@ -1,6 +1,6 @@
 import React from 'react';
-import Actions from '../actions/PostActionCreators';
-import Store from '../stores/PostStore';
+import PostActions from '../actions/PostActionCreators';
+import AuthStore from '../stores/AuthStore';
 import {Link} from 'react-router-dom';
 import {Redirect} from 'react-router';
 
@@ -11,7 +11,7 @@ export default class extends React.Component {
             postUrl: "",
             postText: ""
         },
-        authenticated: Store.getAuth()
+        authenticated: AuthStore.getAuth()
     }
 
     handleOnChange = (event) => {
@@ -24,7 +24,7 @@ export default class extends React.Component {
     }
 
     submitPost = () => {
-        let user = Store.getUser();
+        let user = AuthStore.getUser();
 
         let post = {
             post_title: this.state.newPost.postTitle,
@@ -37,7 +37,7 @@ export default class extends React.Component {
             post_url: this.state.newPost.postUrl
         }
 
-        Actions.submitPost(post);
+        PostActions.submitPost(post);
         this.setState({
             newPost: {}
         });

@@ -1,12 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import parseDomain from 'parse-domain';
-import Actions from '../actions/PostActionCreators';
+import PostActions from '../actions/PostActionCreators';
+import {Link} from 'react-router-dom';
 
 export default class extends React.Component {
     static propTypes = {
-        data: PropTypes.object,
+        data: PropTypes.object.isRequired,
         index: PropTypes.number
+    }
+
+    onCommentClick = () => {
+        let {data} = this.props;
+        PostActions.setPost(data);
     }
 
     _getDomain = () => {
@@ -28,13 +34,16 @@ export default class extends React.Component {
                 <span>{"by " + username + " "}</span>
                 <span>{post_time + " hours ago "}</span>
                 <span>{" | hide | "}</span>
-                <span>{(post_comments || 0) + " comments"}</span>
+                <Link to="/item"
+                onClick={this.onCommentClick}>
+                    {(post_comments || 0) + " comments"}
+                </Link>
             </div>
         )
     }
 
     _getPosts = () => {
-        Actions.getPostsBySite(this._getDomain());
+        PostActions.getPostsBySite(this._getDomain());
     }
 
     render() {
@@ -43,7 +52,11 @@ export default class extends React.Component {
         return (
             <div className="post">
                 <div className="title">
-                    <span className="title-text count">{index + ". "}</span>
+                    {index ?
+                        <span className="title-text count">{index + ". "}</span>
+                    :
+                        null
+                    }
                     <span className="title-text">&#9650;&nbsp;</span>
                     <a href={data.post_url}>{data.post_title || ''}</a>
                     <span className="title-text">&nbsp;(</span>

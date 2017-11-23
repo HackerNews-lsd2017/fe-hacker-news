@@ -1,28 +1,28 @@
 import React from 'react';
-import Actions from '../actions/PostActionCreators';
-import Store from '../stores/PostStore';
+import AuthActions from '../actions/AuthActionCreators';
+import AuthStore from '../stores/AuthStore';
 import Header from './Header';
 import '../../styles/App.css';
 
 export default class extends React.Component {
     state = {
         user: {},
-        authenticated: Store.getAuth()
+        authenticated: false
     }
 
     componentDidMount = () => {
-        Store.addChangeListener(this.onChange);
-        Actions.checkAuth();
+        AuthStore.addChangeListener(this.onChange);
+        AuthActions.checkAuth();
     }
 
     componentWillUnmount = () => {
-        Store.removeChangeListener(this.onChange);
+        AuthStore.removeChangeListener(this.onChange);
     }
 
     onChange = () => {
         this.setState({
-            user: Store.getUser(),
-            authenticated: Store.getAuth()
+            user: AuthStore.getUser(),
+            authenticated: AuthStore.getAuth()
         });
     }
 
@@ -31,7 +31,9 @@ export default class extends React.Component {
         return (
             <div className="app">
                 <Header user={user} authenticated={authenticated}/>
-                {this.props.children}
+                <div className="app-content">
+                    {this.props.children}
+                </div>
             </div>
         )
     }
