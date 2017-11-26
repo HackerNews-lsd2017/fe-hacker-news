@@ -30,10 +30,10 @@ export default class extends React.Component {
 
     loadPosts = () => {
         let {pageCount} = this.state;
-
-        PostActions.getPosts(pageCount, Constants.POSTS_AMOUNT);
+        let newPage = pageCount + 1
+        PostActions.getPosts(newPage, Constants.POSTS_AMOUNT);
         this.setState({
-            pageCount: pageCount + 1
+            pageCount: newPage
         });
     }
 
