@@ -12,6 +12,10 @@ export default class extends React.Component {
         post: PostStore.getPost()
     }
 
+    componentWillMount = () => {
+        console.log("Will mount", PostStore.getPost());
+    }
+
     componentDidMount = () => {
         this.loadData();
         PostStore.addChangeListener(this.onChange);
@@ -22,7 +26,7 @@ export default class extends React.Component {
     }
 
     loadData = () => {
-        let viewedPost = PostStore.getPost();
+        let viewedPost = this.state.post;
 
         PostActions.getComments(viewedPost.hanesst_id);
     }
@@ -65,7 +69,7 @@ export default class extends React.Component {
             <div className="comment-container">
                 {post ? 
                     <div className="story-container">
-                        <Post post={post}/>
+                        <Post post={post} />
                         <div className="comment-area">
                             <textArea value={comment} onChange={this.onCommentChange}/>
                             <button onClick={this.addComment}>

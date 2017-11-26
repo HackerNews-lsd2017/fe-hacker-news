@@ -9,7 +9,7 @@ export default {
         let payload = {user_name: user.username, user_pwd: user.password};
     	axios.post(`${baseUrl}/addUser`, payload).then(response => {
             Dispatcher.handleServerAction({
-                type: 'ADDED_USER',
+                type: Constants.ActionTypes.ADDED_USER,
                 data: response.data
             });
         }).then(() => {
@@ -22,7 +22,7 @@ export default {
     	axios.post(`${baseUrl}/logIn`, payload).then(response => {
             console.log("reponse", response);
             Dispatcher.handleServerAction({
-                type: 'LOGGED_IN',
+                type: Constants.ActionTypes.LOGGED_IN,
                 data: response.data
             });
         });
@@ -30,27 +30,27 @@ export default {
 
     logOut() {
         Dispatcher.handleViewAction({
-            type: 'LOGGED_OUT'
+            type: Constants.ActionTypes.LOGGED_OUT
         });
     },
 
     updateUser(user) {
     	Dispatcher.handleViewAction({
-            type: 'USER_MODIFIED',
+            type: Constants.ActionTypes.USER_MODIFIED,
             data: user
         });
     },
 
     updateNewUser(user) {
     	Dispatcher.handleViewAction({
-            type: 'NEW_USER_MODIFIED',
+            type: Constants.ActionTypes.NEW_USER_MODIFIED,
             data: user
         });
     },
 
     checkAuth() {
         Dispatcher.handleViewAction({
-            type: 'CHECK_AUTH'
+            type: Constants.ActionTypes.CHECK_AUTH
         });
     }
 };

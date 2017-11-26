@@ -9,7 +9,19 @@ export default {
 
     // Each time you add an action, add it here... They should be past-tense
     ActionTypes: keyMirror({
-        FETCHED_POSTS: null
+        // Post
+        FETCHED_POSTS: null,
+        ADDED_POST: null,
+        LOADED_COMMENTS: null,
+        POST_SET: null,
+        COMMENT_UPDATED: null,
+        // Auth
+        ADDED_USER: null,
+        USER_MODIFIED: null,
+        NEW_USER_MODIFIED: null,
+        LOGGED_IN: null,
+        LOGGED_OUT: null,
+        CHECK_AUTH: null
     }),
 
     POSTS_AMOUNT: 30

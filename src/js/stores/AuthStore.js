@@ -1,6 +1,7 @@
 import Dispatcher from '../Dispatcher';
 import BaseStore from '../BaseStore';
 import assign from 'object-assign';
+import Constants from '../Constants';
 
 let _authenticated = false;
 let _user = {username: "", password: ""};
@@ -55,31 +56,31 @@ const Store = assign({}, BaseStore, {
     dispatcherIndex: Dispatcher.register(function(payload) {
         let action = payload.action;
         switch (action.type) {
-            case 'ADDED_USER':
+            case Constants.ActionTypes.ADDED_USER:
                 if (action.data) {
                     // setPosts(action.data);
                     // setAuth(action.data);
                 }
                 break;
-            case 'USER_MODIFIED':
+            case Constants.ActionTypes.USER_MODIFIED:
                 if (action.data) {
                     updateUser(action.data);
                 }
                 break;
-            case 'NEW_USER_MODIFIED':
+            case Constants.ActionTypes.NEW_USER_MODIFIED:
                 if (action.data) {
                     updateNewUser(action.data);
                 }
                 break;
-            case 'LOGGED_IN':
+            case Constants.ActionTypes.LOGGED_IN:
                 if (action.data) {
                     setAuth(action.data);
                 }
                 break;
-            case 'LOGGED_OUT':
+            case Constants.ActionTypes.LOGGED_OUT:
                 logOut();
                 break;
-            case 'CHECK_AUTH':
+            case Constants.ActionTypes.CHECK_AUTH:
                 getLocalUser();
                 break;
             default:
