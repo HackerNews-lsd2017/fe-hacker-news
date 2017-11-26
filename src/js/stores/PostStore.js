@@ -10,16 +10,14 @@ let _post = {};
 
 /* Private Functions */
 function setPosts(data) {
-    _posts = data;
+    _posts = _posts.concat(data);
 }
 
 function setComments(comments) {
-    console.log("comments", comments);
     _comments = comments;
 }
 
 function setPost(post) {
-    console.log("post", post);
     _post = post;
 }
 
@@ -53,23 +51,23 @@ const Store = assign({}, BaseStore, {
                     setPosts(action.data);
                 }
                 break;
-            case 'ADDED_POST':
+            case Constants.ActionTypes.ADDED_POST:
                 if (action.data) {
                     setPosts(action.data);
                 }
                 break;
-            case 'LOADED_COMMENTS':
+            case Constants.ActionTypes.LOADED_COMMENTS:
                 if (action.data) {
                     setPost(action.data.story);
                     setComments(action.data.children);
                 }
                 break;
-            case 'POST_SET':
+            case Constants.ActionTypes.POST_SET:
                 if (action.data) {
                     setPost(action.data);
                 }
                 break;
-            case 'COMMENT_UPDATED':
+            case Constants.ActionTypes.COMMENT_UPDATED:
                 if (action.data) {
                     updateComment(action.data);
                 }

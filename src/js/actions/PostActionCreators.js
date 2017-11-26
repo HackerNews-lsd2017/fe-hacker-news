@@ -7,7 +7,6 @@ let baseUrl = Constants.HACKER_NEWS_API;
 export default {
     getPosts(page, limit) {
         axios.get(`${baseUrl}/getPostsNewNew?page=` + page + `&limit=` + limit).then(response => {
-            console.log(response.data);
             Dispatcher.handleServerAction({
                 type: Constants.ActionTypes.FETCHED_POSTS,
                 data: response.data
@@ -27,15 +26,15 @@ export default {
     submitPost(post) {
         axios.post(`${baseUrl}/post`, post).then(response => {
             Dispatcher.handleServerAction({
-                type: 'ADDED_POST'
+                type: Constants.ActionTypes.ADDED_POST
             });
         });
     },
 
-    getComments() {
+    getComments(hanesst_id) {
         axios.get(`${baseUrl}/getComments?hanesst_id=` + 445).then(response => {
             Dispatcher.handleServerAction({
-                type: 'LOADED_COMMENTS',
+                type: Constants.ActionTypes.LOADED_COMMENTS,
                 data: response.data
             });
         });
@@ -43,13 +42,13 @@ export default {
 
     setPost() {
         Dispatcher.handleViewAction({
-            type: 'POST_SET'
+            type: Constants.ActionTypes.POST_SET
         });
     },
 
     updateComment(data) {
         Dispatcher.handleViewAction({
-            type: 'COMMENT_UPDATED',
+            type: Constants.ActionTypes.COMMENT_UPDATED,
             data: data
         });
     }
