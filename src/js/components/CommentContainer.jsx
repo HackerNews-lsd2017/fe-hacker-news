@@ -60,29 +60,29 @@ export default class extends React.Component {
 
     render() {
         let {post, comments, comment} = this.state;
-        console.log("comments", comments);
+
         return (
             <div className="comment-container">
-            {post ? 
-                <div className="story-container">
-                    <Post data={post}/>
-                    <div className="comment-area">
-                        <textArea value={comment} onChange={this.onCommentChange}/>
-                        <button onClick={this.addComment}>
-                            add comment
-                        </button>
+                {post ? 
+                    <div className="story-container">
+                        <Post post={post}/>
+                        <div className="comment-area">
+                            <textArea value={comment} onChange={this.onCommentChange}/>
+                            <button onClick={this.addComment}>
+                                add comment
+                            </button>
+                        </div>
                     </div>
-                </div>
-            :
-                null
-            }
-            {comments.length < 1 ?
-                    null
                 :
-                    comments.map(comment => 
-                        <Comment comment={comment}/>
-                    )
-            }
+                    null
+                }
+                {comments.length < 1 ?
+                        null
+                    :
+                        comments.map(comment => 
+                            <Comment comment={comment}/>
+                        )
+                }
             </div>
         );
     }

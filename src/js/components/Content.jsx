@@ -2,16 +2,20 @@ import React from 'react';
 import Newest from './Newest';
 import PostStore from '../stores/PostStore';
 import PostActions from '../actions/PostActionCreators';
+import Constants from '../Constants';
 
 export default class extends React.Component {
     state = {
         posts: [],
-        loadMore: 1
+        pageCount: 0,
+    }
+
+    componentWillMount = () => {
+        PostActions.getPosts(0, Constants.POSTS_AMOUNT);
     }
 
     componentDidMount = () => {
         PostStore.addChangeListener(this.onChange);
-        this.loadPosts();
     }
 
     componentWillUnmount = () => {
@@ -24,12 +28,12 @@ export default class extends React.Component {
         });
     }
 
-        // @todo: it's a hack - waiting for the backend
     loadPosts = () => {
-        let {loadMore} = this.state;
-        PostActions.getPosts(30 * loadMore);
+        let {pageCount} = this.state;
+
+        PostActions.getPosts(pageCount, Constants.POSTS_AMOUNT);
         this.setState({
-            loadMore: loadMore + 1
+            pageCount: pageCount + 1
         });
     }
 
@@ -41,7 +45,7 @@ export default class extends React.Component {
                 <div className="newest-posts">
                     {posts.length > 0 ?
                         <Newest posts={posts} />
-                    : null}
+                    : ''}
                 </div>
 
                 <div className="app-footer">

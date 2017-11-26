@@ -6,17 +6,18 @@ import {Link} from 'react-router-dom';
 
 export default class extends React.Component {
     static propTypes = {
-        data: PropTypes.object.isRequired,
+        post: PropTypes.object.isRequired,
+        commentsCount: PropTypes.number,
         index: PropTypes.number
     }
 
     onCommentClick = () => {
-        let {data} = this.props;
-        PostActions.setPost(data);
+        let {post} = this.props;
+        PostActions.setPost(post);
     }
 
     _getDomain = () => {
-        let url = this.props.data.post_url;
+        let url = this.props.post.post_url;
 
         if (parseDomain(url)) {
             return parseDomain(url).domain + "." + parseDomain(url).tld;
@@ -25,8 +26,17 @@ export default class extends React.Component {
         }
     }
 
+    getCommentsAmount = () => {
+        let {commentsCount} = this.props;
+
+        if (commentsCount === 1) {
+            return commentsCount + " comment";
+        }
+        return commentsCount + " comments";
+    }
+
     _getSubtext = () => {
-        let {post_points, username, post_time, post_comments} = this.props.data;
+        let {post_points, username, post_time} = this.props.post;
 
         return (
             <div>
@@ -36,7 +46,7 @@ export default class extends React.Component {
                 <span>{" | hide | "}</span>
                 <Link to="/item"
                 onClick={this.onCommentClick}>
-                    {(post_comments || 0) + " comments"}
+                    {this.getCommentsAmount()}
                 </Link>
             </div>
         )
@@ -47,7 +57,7 @@ export default class extends React.Component {
     }
 
     render() {
-        let {data, index} = this.props;
+        let {post, index} = this.props;
 
         return (
             <div className="post">
@@ -58,7 +68,7 @@ export default class extends React.Component {
                         null
                     }
                     <span className="title-text">&#9650;&nbsp;</span>
-                    <a href={data.post_url}>{data.post_title || ''}</a>
+                    <a href={post.post_url}>{post.post_title || ''}</a>
                     <span className="title-text">&nbsp;(</span>
                     <span className="title-text domain" onClick={this._getPosts}>{this._getDomain()}</span>
                     <span className="title-text">)</span>

@@ -13,7 +13,7 @@ export default class extends React.Component {
 
     render() {
         let {comment} = this.props;
-        console.log("comment", comment);
+
         return (
             <div className="comment">
                 <div className="comment-header">
