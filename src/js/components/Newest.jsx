@@ -12,8 +12,8 @@ export default class extends React.Component {
 
         return (
             <div className="newest-container">
-                {posts.map((post, index) =>
-                    <Post key={index} index={index + 1} data={post} />
+                {posts.map((p, index) =>
+                    <Post key={index} index={index + 1} post={p.post} commentsCount={p.count} />
                 )}
             </div>
         );
