@@ -20,7 +20,6 @@ export default {
     logIn(user) {
         let payload = {user_name: user.username, user_pwd: user.password};
     	axios.post(`${baseUrl}/logIn`, payload).then(response => {
-            console.log("reponse", response);
             Dispatcher.handleServerAction({
                 type: Constants.ActionTypes.LOGGED_IN,
                 data: response.data
