@@ -2,6 +2,7 @@ import Dispatcher from '../Dispatcher';
 import BaseStore from '../BaseStore';
 import Constants from '../Constants';
 import assign from 'object-assign';
+import PostActions from '../actions/PostActionCreators';
 
 let _posts = [];
 let _comments = [];
@@ -56,10 +57,15 @@ const Store = assign({}, BaseStore, {
                     setPosts(action.data);
                 }
                 break;
+            case Constants.ActionTypes.ADDED_COMMENT:
+                if (action.data) {
+                    PostActions.getComments(_post.hanesst_id);
+                }
+                break;
             case Constants.ActionTypes.LOADED_COMMENTS:
                 if (action.data) {
-                    setPost(action.data.story);
                     setComments(action.data.children);
+                    setPost(action.data.story);
                 }
                 break;
             case Constants.ActionTypes.POST_SET:

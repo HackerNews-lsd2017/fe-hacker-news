@@ -5,14 +5,26 @@ import React from 'react';
 
 export default class extends React.Component {
     state = {
-        user: {}
+        user: {},
+        email: "",
+        about: ""
     }
 
     update = () => {
         console.log("update");
     }
 
+    updateEmail = () => {
+
+    }
+
+    updateAboutMe = () => {
+        
+    }
+
     render() {
+        let {email, about} = this.state;
+
         return (
         <div className="management-container">
             <div className="info-banner">
@@ -53,7 +65,8 @@ export default class extends React.Component {
                             about:
                         </td>
                         <td>
-                            <textArea>
+                            <textArea value={about}
+                            onChange={this.updateAboutMe}>
                                 
                             </textArea>
                         </td>
@@ -63,7 +76,9 @@ export default class extends React.Component {
                             email:
                         </td>
                         <td>
-                            <input type="text"/>
+                            <input value={email}
+                            onChange={this.updateEmail}
+                            type="text"/>
                         </td>
                     </tr>
                     {/**

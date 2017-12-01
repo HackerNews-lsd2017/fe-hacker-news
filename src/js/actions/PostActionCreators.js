@@ -25,6 +25,12 @@ export default {
 
     submitPost(post) {
         axios.post(`${baseUrl}/post`, post).then(response => {
+            if(post.post_type === "comment") {
+                Dispatcher.handleServerAction({
+                    type: Constants.ActionTypes.ADDED_COMMENT
+                });
+                return;
+            }
             Dispatcher.handleServerAction({
                 type: Constants.ActionTypes.ADDED_POST
             });
@@ -32,7 +38,7 @@ export default {
     },
 
     getComments(hanesst_id) {
-        axios.get(`${baseUrl}/getComments?hanesst_id=` + 445).then(response => {
+        axios.get(`${baseUrl}/getComments?hanesst_id=` + hanesst_id).then(response => {
             Dispatcher.handleServerAction({
                 type: Constants.ActionTypes.LOADED_COMMENTS,
                 data: response.data
@@ -40,9 +46,10 @@ export default {
         });
     },
 
-    setPost() {
+    setPost(data) {
         Dispatcher.handleViewAction({
-            type: Constants.ActionTypes.POST_SET
+            type: Constants.ActionTypes.POST_SET,
+            data: data
         });
     },
 

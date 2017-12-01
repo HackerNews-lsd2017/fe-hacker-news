@@ -7,13 +7,9 @@ import PostActions from '../actions/PostActionCreators';
 
 export default class extends React.Component {
     state = {
-        comment: "",
+        newComment: "",
         comments: [],
         post: PostStore.getPost()
-    }
-
-    componentWillMount = () => {
-        console.log("Will mount", PostStore.getPost());
     }
 
     componentDidMount = () => {
@@ -27,24 +23,24 @@ export default class extends React.Component {
 
     loadData = () => {
         let viewedPost = this.state.post;
-
-        PostActions.getComments(viewedPost.hanesst_id);
+        if (viewedPost.hanesst_id) {
+            PostActions.getComments(viewedPost.hanesst_id);
+        }
     }
 
     onChange = () => {
         this.setState({
-            comment: PostStore.getComment(),
+            newComment: PostStore.getComment(),
             comments: PostStore.getComments(),
             post: PostStore.getPost()
         });
     }
 
     addComment = () => {
-        let {comment, post} = this.state;
-
+        let {newComment, post} = this.state;
         let postTemplate = {
             post_title: "",
-            post_text: comment, 
+            post_text: newComment, 
             hanesst_id: 0, 
             post_type: "comment", 
             post_parent: post.hanesst_id,
@@ -52,8 +48,8 @@ export default class extends React.Component {
             pwd_hash: "fyQgkcLMD1", 
             post_url: ""
         }
-        console.log("add comment", postTemplate);
-        // PostActions.submitPost();
+
+        PostActions.submitPost(postTemplate);
     }
 
     onCommentChange = (event) => {
@@ -62,8 +58,25 @@ export default class extends React.Component {
         PostActions.updateComment(target.value);
     }
 
+    renderChildren(parentComment) {
+        let {comments} = this.state;
+        let children = comments.filter(comment => parentComment.hanesst_id === comment.post_parent);
+
+        if (children.length === 0) {
+            return false;
+        }
+
+        return children.map(comment =>
+            <div key={comment.hanesst_id} className="child-comment">
+                <Comment comment={comment} />
+                {this.renderChildren(comment)}
+            </div>
+        );
+    }
+
     render() {
-        let {post, comments, comment} = this.state;
+        let {post, comments, newComment} = this.state;
+        let topLevelComments = comments.filter(comment => post.hanesst_id === comment.post_parent);
 
         return (
             <div className="comment-container">
@@ -71,7 +84,7 @@ export default class extends React.Component {
                     <div className="story-container">
                         <Post post={post} />
                         <div className="comment-area">
-                            <textArea value={comment} onChange={this.onCommentChange}/>
+                            <textArea value={newComment} onChange={this.onCommentChange}/>
                             <button onClick={this.addComment}>
                                 add comment
                             </button>
@@ -83,9 +96,16 @@ export default class extends React.Component {
                 {comments.length < 1 ?
                         null
                     :
-                        comments.map(comment => 
-                            <Comment comment={comment}/>
-                        )
+                    <div>
+                        {topLevelComments.map(parentComment =>
+                            <div key={parentComment.hanesst_id}>
+                                <Comment
+                                className="comment"
+                                comment={parentComment} />
+                                {this.renderChildren(parentComment)}
+                            </div>
+                        )}
+                    </div>
                 }
             </div>
         );

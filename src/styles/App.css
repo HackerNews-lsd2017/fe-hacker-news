@@ -139,3 +139,12 @@ hr {
 .comment {
   padding: 0.5em;
 }
+
+.child-comment {
+  padding-left: 2.4em;
+}
+
+.reply {
+  text-decoration: underline;
+  font-size: 8pt;
+}
