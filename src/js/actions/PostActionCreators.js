@@ -6,7 +6,7 @@ let baseUrl = Constants.HACKER_NEWS_API;
 
 export default {
     getPosts(page, limit) {
-        axios.get(`${baseUrl}/getPostsNewNew?page=` + page + `&limit=` + limit).then(response => {
+        axios.get(`${baseUrl}/getPosts?page=` + page + `&limit=` + limit).then(response => {
             Dispatcher.handleServerAction({
                 type: Constants.ActionTypes.FETCHED_POSTS,
                 data: response.data
