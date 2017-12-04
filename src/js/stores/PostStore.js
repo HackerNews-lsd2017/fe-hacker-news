@@ -19,6 +19,7 @@ function setComments(comments) {
 }
 
 function setPost(post) {
+    console.log("setPost", post);
     _post = post;
 }
 
@@ -74,9 +75,7 @@ const Store = assign({}, BaseStore, {
                 }
                 break;
             case Constants.ActionTypes.COMMENT_UPDATED:
-                if (action.data) {
-                    updateComment(action.data);
-                }
+                updateComment(action.data);
                 break;
             default:
                 return;

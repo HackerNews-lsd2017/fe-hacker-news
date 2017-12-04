@@ -9,6 +9,7 @@ import Login from './components/Login';
 import Submit from './components/Submit';
 import UserManagement from './components/UserManagement';
 import CommentContainer from './components/CommentContainer';
+import CommentReply from './components/CommentReply';
 
 /* Application Routes for Web */
 const AppRoutes = (
@@ -21,6 +22,7 @@ const AppRoutes = (
                     <Route exact path="/" component={Content}/>
                     <Route path="/user" component={UserManagement}/>
                     <Route path="/item" component={CommentContainer}/>
+                    <Route path="/reply" component={CommentReply}/>
                 </AppContainer>
             </Switch>
         </App>

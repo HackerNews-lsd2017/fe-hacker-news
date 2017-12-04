@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
+import PostActions from '../actions/PostActionCreators';
 
 export default class extends React.Component {
     static propTypes = {
@@ -54,6 +55,12 @@ export default class extends React.Component {
         }
     }
 
+    onReplyClick = () => {
+        let {comment} = this.props;
+        console.log("onCommentClick", comment);
+        PostActions.setPost(comment);
+    }
+
     render() {
         let {comment, className} = this.props;
 
@@ -67,7 +74,7 @@ export default class extends React.Component {
                     {comment.post_text}
                 </div>
                 <div className="comment-footer">
-                <Link className="reply" to="">reply</Link>
+                <Link className="reply" to="/reply" onClick={this.onReplyClick}>reply</Link>
                 </div>
             </div>
         );

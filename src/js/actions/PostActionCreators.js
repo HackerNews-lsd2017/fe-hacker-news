@@ -47,6 +47,7 @@ export default {
     },
 
     setPost(data) {
+        console.log("action setpost", data);
         Dispatcher.handleViewAction({
             type: Constants.ActionTypes.POST_SET,
             data: data
