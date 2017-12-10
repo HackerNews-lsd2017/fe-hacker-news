@@ -1,6 +1,4 @@
 import React from 'react';
-import Comment from './Comment';
-import Post from './Post';
 import AuthStore from '../stores/AuthStore';
 import PostStore from '../stores/PostStore';
 import PostActions from '../actions/PostActionCreators';
