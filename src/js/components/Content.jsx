@@ -3,6 +3,7 @@ import Newest from './Newest';
 import PostStore from '../stores/PostStore';
 import PostActions from '../actions/PostActionCreators';
 import Constants from '../Constants';
+import Loading from 'react-loading';
 
 export default class extends React.Component {
     state = {
@@ -45,7 +46,9 @@ export default class extends React.Component {
                 <div className="newest-posts">
                     {posts.length > 0 ?
                         <Newest posts={posts} />
-                    : ''}
+                    : 
+                    <Loading className="loading" type={"spin"} color={"#ff6600"} height='166' width='93' />
+                }
                 </div>
 
                 <div className="app-footer">
