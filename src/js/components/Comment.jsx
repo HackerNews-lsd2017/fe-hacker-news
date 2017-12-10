@@ -57,7 +57,6 @@ export default class extends React.Component {
 
     onReplyClick = () => {
         let {comment} = this.props;
-        console.log("onCommentClick", comment);
         PostActions.setPost(comment);
     }
 
