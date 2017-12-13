@@ -19,7 +19,6 @@ function setComments(comments) {
 }
 
 function setPost(post) {
-    console.log("setPost", post);
     _post = post;
 }
 

@@ -15,7 +15,7 @@ export default class extends React.Component {
 
     render() {
         let {authenticated, user} = this.props;
-        console.log("user", user);
+        
         return (
             <table className="app-header">
                 <tbody>

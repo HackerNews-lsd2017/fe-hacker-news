@@ -62,7 +62,7 @@ export default class extends React.Component {
 
     render() {
         let {comment, className} = this.props;
-        console.log("comment", comment);
+
         return (
             <div className={className}>
                 <span className="title-text">&#9650;&nbsp;</span>

@@ -22,7 +22,7 @@ export default class extends React.Component {
     loadData = () => {
         let {post} = this.props;
         let {id} = this.props.match.params;
-        console.log("post", post, id);
+        
         if (id && !post) {
             PostActions.getComments(id);
         }
