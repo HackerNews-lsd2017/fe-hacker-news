@@ -74,7 +74,8 @@ export default class extends React.Component {
     }
 
     _getSubtext = () => {
-        let {post_points, username} = this.props.post;
+        let {post} = this.props;
+        let {post_points, username, } = post;
 
         return (
             <div>
@@ -82,7 +83,8 @@ export default class extends React.Component {
                 <span>{"by " + username + " "}</span>
                 <span>{this._getTime()}</span>
                 <span>{" | hide | "}</span>
-                <Link to="/item" onClick={this.onCommentClick}>
+                <Link to={'/item/' + post.hanesst_id}
+                onClick={this.onCommentClick}>
                     {this.getCommentsAmount()}
                 </Link>
             </div>

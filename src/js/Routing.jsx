@@ -21,8 +21,8 @@ const AppRoutes = (
                 <AppContainer>
                     <Route exact path="/" component={Content}/>
                     <Route path="/user" component={UserManagement}/>
-                    <Route path="/item" component={CommentContainer}/>
-                    <Route path="/reply" component={CommentReply}/>
+                    <Route path="/item/:id" component={CommentContainer}/>
+                    <Route path="/reply/:id" component={CommentReply}/>
                 </AppContainer>
             </Switch>
         </App>

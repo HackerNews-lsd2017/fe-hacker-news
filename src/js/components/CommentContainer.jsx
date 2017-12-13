@@ -22,9 +22,9 @@ export default class extends React.Component {
     }
 
     loadData = () => {
-        let {post} = this.state;
-        if (post.hanesst_id) {
-            PostActions.getComments(post.hanesst_id);
+        let {id} = this.props.match.params;
+        if (id) {
+            PostActions.getComments(id);
         }
     }
 
@@ -96,16 +96,16 @@ export default class extends React.Component {
                 {comments.length < 1 ?
                         null
                     :
-                    <div>
+                    <ul>
                         {topLevelComments.map(parentComment =>
-                            <div key={parentComment.hanesst_id}>
+                            <li key={parentComment.hanesst_id}>
                                 <Comment
                                 className="comment"
                                 comment={parentComment} />
                                 {this.renderChildren(parentComment)}
-                            </div>
+                            </li>
                         )}
-                    </div>
+                    </ul>
                 }
             </div>
         );

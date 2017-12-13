@@ -57,13 +57,12 @@ export default class extends React.Component {
 
     onReplyClick = () => {
         let {comment} = this.props;
-        console.log("onCommentClick", comment);
         PostActions.setPost(comment);
     }
 
     render() {
         let {comment, className} = this.props;
-
+        console.log("comment", comment);
         return (
             <div className={className}>
                 <span className="title-text">&#9650;&nbsp;</span>
@@ -74,7 +73,9 @@ export default class extends React.Component {
                     {comment.post_text}
                 </div>
                 <div className="comment-footer">
-                <Link className="reply" to="/reply" onClick={this.onReplyClick}>reply</Link>
+                <Link className="reply"
+                to={'/reply/' + comment.hanesst_id}
+                onClick={this.onReplyClick}>reply</Link>
                 </div>
             </div>
         );

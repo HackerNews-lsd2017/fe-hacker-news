@@ -1,52 +1,63 @@
 import React from 'react';
 // import {Link} from 'react-router-dom';
 // import PostActions from '../actions/PostActionCreators';
-// import PostStore from '../stores/PostStore';
+import AuthStore from '../stores/AuthStore';
+import AuthActions from '../actions/AuthActionCreators';
 
 export default class extends React.Component {
     state = {
-        user: {},
-        email: "",
-        about: ""
+        user: {}
+    }
+
+    componentDidMount() {
+        AuthActions.checkAuth();
+        this.setData();
+        AuthStore.addChangeListener(this.onChange);
+    }
+
+    componentWillUnmount = () => {
+        AuthStore.removeChangeListener(this.onChange);
+    }
+
+    onChange = () => {
+        this.setState({user: AuthStore.getUser()})
+    }
+
+    setData = () => {
+        this.setState({user: AuthStore.getUser()});
+    }
+
+    updatePassword = (event) => {
+        let {target} = event;
+        let {user} = this.state;
+
+        user.password = target.value;
+
+        AuthActions.updateUser(user);
     }
 
     update = () => {
-        console.log("update");
-    }
+        let {user} = this.state;
 
-    updateEmail = () => {
-
-    }
-
-    updateAboutMe = () => {
-        
+        AuthActions.updateUserPassword(user);
     }
 
     render() {
-        let {email, about} = this.state;
+        let {user} = this.state;
 
         return (
         <div className="management-container">
             <div className="info-banner">
                 <span>
-                Please put a valid address in the email field, or we won't be able to send you a
-                new password if you forget yours. Your address is only visible to you and us.
-                Crawlers and other users can't see it.
+                Please remember your new password. Otherwise you will never be able to access your
+                account again.
                 </span>
             </div>
             <table>
                 <tbody>
                     <tr>
                         <td>
-                            user:
-                        </td>
-                        <td>
-                            
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            created:
+                            user: {user.username}
                         </td>
                         <td>
                             
@@ -60,50 +71,16 @@ export default class extends React.Component {
                             1
                         </td>
                     </tr>
-                     <tr>
-                        <td>
-                            about:
-                        </td>
-                        <td>
-                            <textArea value={about}
-                            onChange={this.updateAboutMe}>
-                                
-                            </textArea>
-                        </td>
-                    </tr>
                     <tr>
                         <td>
-                            email:
+                            password:
                         </td>
                         <td>
-                            <input value={email}
-                            onChange={this.updateEmail}
-                            type="text"/>
+                            <input value={user.password || ""}
+                            onChange={this.updatePassword}
+                            type="password"/>
                         </td>
                     </tr>
-                    {/**
-                    <tr>
-                        <td>
-                        </td>
-                        <td>
-                            <Link to="">change password</Link>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                        </td>
-                        <td>
-                            <Link to="">submissions</Link>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                        </td>
-                        <td>
-                            <Link to="">comments</Link>
-                        </td>
-                    </tr>
-                    **/}
                     <tr>
                         <td>
                             <button onClick={this.update}>

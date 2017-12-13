@@ -9,6 +9,10 @@ html, body {
     padding:0.28em;
 }
 
+ul {
+  list-style: none;
+  padding: 0;
+}
 .app {
     width: 84.32%;
     margin: auto;

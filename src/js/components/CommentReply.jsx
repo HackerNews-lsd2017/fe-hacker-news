@@ -1,6 +1,4 @@
 import React from 'react';
-import Comment from './Comment';
-import Post from './Post';
 import AuthStore from '../stores/AuthStore';
 import PostStore from '../stores/PostStore';
 import PostActions from '../actions/PostActionCreators';
@@ -13,11 +11,21 @@ export default class extends React.Component {
     }
 
     componentDidMount = () => {
+        this.loadData();
         PostStore.addChangeListener(this.onChange);
     }
 
     componentWillUnmount = () => {
         PostStore.removeChangeListener(this.onChange);
+    }
+
+    loadData = () => {
+        let {post} = this.props;
+        let {id} = this.props.match.params;
+        console.log("post", post, id);
+        if (id && !post) {
+            PostActions.getComments(id);
+        }
     }
 
     onChange = () => {

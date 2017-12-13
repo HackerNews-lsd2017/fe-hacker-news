@@ -27,6 +27,17 @@ export default {
         });
     },
 
+    updateUserPassword(user) {
+        let payload = {user_name: user.username, user_pwd: user.password};
+        axios.put(`${baseUrl}/editUser`, payload).then(response => {
+            Dispatcher.handleServerAction({
+                type: Constants.ActionTypes.UPDATED_USER,
+                data: response.data
+            });
+        });
+    },
+    
+
     logOut() {
         Dispatcher.handleViewAction({
             type: Constants.ActionTypes.LOGGED_OUT
