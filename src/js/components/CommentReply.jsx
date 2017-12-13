@@ -104,7 +104,6 @@ export default class extends React.Component {
 
     render() {
         let {post, newComment} = this.state;
-        console.log("post", post);
         return (
             <div className="comment-container">
                 <div className="story-container">

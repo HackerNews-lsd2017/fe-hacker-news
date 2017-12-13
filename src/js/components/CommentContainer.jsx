@@ -77,7 +77,6 @@ export default class extends React.Component {
     render() {
         let {post, comments, newComment} = this.state;
         let topLevelComments = comments.filter(comment => post.hanesst_id === comment.post_parent);
-        console.log("state post", post);
         return (
             <div className="comment-container">
                 {post ? 
