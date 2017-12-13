@@ -12,7 +12,7 @@ export default class extends React.Component {
     defaultProps = {
         comments: {}
     }
-
+    // TODO: iplement
     collapseComments = () => {
         console.log("collapse");
     }
