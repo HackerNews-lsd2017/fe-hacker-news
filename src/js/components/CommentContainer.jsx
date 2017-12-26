@@ -9,15 +9,20 @@ export default class extends React.Component {
     state = {
         newComment: "",
         comments: [],
-        post: PostStore.getPost()
+        post: PostStore.getPost(),
+        authenticated: AuthStore.getAuth(),
+        upVotes: PostStore.getPostsKarma()
     }
 
     componentDidMount = () => {
         this.loadData();
+        PostActions.fetchKarma();
+        AuthStore.addChangeListener(this.onChange);
         PostStore.addChangeListener(this.onChange);
     }
 
     componentWillUnmount = () => {
+        AuthStore.removeChangeListener(this.onChange);
         PostStore.removeChangeListener(this.onChange);
     }
 
@@ -32,7 +37,9 @@ export default class extends React.Component {
         this.setState({
             newComment: PostStore.getComment(),
             comments: PostStore.getComments(),
-            post: PostStore.getPost()
+            post: PostStore.getPost(),
+            authenticated: AuthStore.getAuth(),
+            upVotes: PostStore.getPostsKarma()
         });
     }
 
@@ -58,8 +65,22 @@ export default class extends React.Component {
         PostActions.updateComment(target.value);
     }
 
+    checkUpVote = (hanesst_id) => {
+        let {upVotes} = this.state;
+        let id = hanesst_id.toString();
+        
+        if(upVotes.posts[id]) {
+            return true;
+        }
+        return false;
+    }
+
+    upVote = (hanesst_id) => {
+        PostActions.upVote(hanesst_id);
+    }
+
     renderChildren(parentComment) {
-        let {comments} = this.state;
+        let {comments, authenticated} = this.state;
         let children = comments.filter(comment => parentComment.hanesst_id === comment.post_parent);
 
         if (children.length === 0) {
@@ -68,20 +89,26 @@ export default class extends React.Component {
 
         return children.map(comment =>
             <div key={comment.hanesst_id} className="child-comment">
-                <Comment comment={comment} />
+                <Comment comment={comment}
+                authenticated={authenticated}
+                upVoted={this.checkUpVote(comment.hanesst_id)}
+                upVote={this.upVote.bind(null, comment.hanesst_id)} />
                 {this.renderChildren(comment)}
             </div>
         );
     }
 
     render() {
-        let {post, comments, newComment} = this.state;
+        let {post, comments, newComment, authenticated} = this.state;
         let topLevelComments = comments.filter(comment => post.hanesst_id === comment.post_parent);
         return (
             <div className="comment-container">
-                {post ? 
+                {post.hanesst_id ? 
                     <div className="story-container">
-                        <Post post={post} />
+                        <Post post={post}
+                        upVoted={this.checkUpVote(post.hanesst_id)}
+                        upVote={this.upVote.bind(null, post.hanesst_id)}
+                        />
                         <div className="comment-area">
                             <textArea value={newComment} onChange={this.onCommentChange}/>
                             <button onClick={this.addComment}>
@@ -100,7 +127,11 @@ export default class extends React.Component {
                             <li key={parentComment.hanesst_id}>
                                 <Comment
                                 className="comment"
-                                comment={parentComment} />
+                                authenticated={authenticated}
+                                comment={parentComment}
+                                upVoted={this.checkUpVote(parentComment.hanesst_id)}
+                                upVote={this.upVote.bind(null, parentComment.hanesst_id)}
+                                />
                                 {this.renderChildren(parentComment)}
                             </li>
                         )}

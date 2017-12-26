@@ -58,5 +58,20 @@ export default {
             type: Constants.ActionTypes.COMMENT_UPDATED,
             data: data
         });
-    }
+    },
+
+    upVote(hanesst_id) {
+        axios.post(`${baseUrl}/upVote?hanesst_id=` + hanesst_id).then(() => {
+            Dispatcher.handleServerAction({
+                type: Constants.ActionTypes.UPVOTED_POST,
+                data: hanesst_id
+            });
+        });
+    },
+
+    fetchKarma() {
+        Dispatcher.handleViewAction({
+            type: Constants.ActionTypes.FETCH_KARMA
+        });
+    },
 };

@@ -6,12 +6,17 @@ import PostActions from '../actions/PostActionCreators';
 export default class extends React.Component {
     static propTypes = {
         comment: PropTypes.object,
-        className: PropTypes.string
+        className: PropTypes.string,
+        authenticated: PropTypes.bool,
+        upVoted: PropTypes.bool,
+        upVote: PropTypes.func
     }
 
     defaultProps = {
-        comments: {}
+        comments: {},
+        authenticated: false
     }
+
     // TODO: iplement
     collapseComments = () => {
         console.log("collapse");
@@ -61,11 +66,12 @@ export default class extends React.Component {
     }
 
     render() {
-        let {comment, className} = this.props;
+        let {comment, className, authenticated, upVoted, upVote} = this.props;
 
         return (
             <div className={className}>
-                <span className="title-text">&#9650;&nbsp;</span>
+                <span className={"title-text" + (upVoted ? " active" : "")}
+                onClick={upVote}>&#9650;&nbsp;</span>
                 <div className="comment-header">
                     {comment.username} {this._getTime()} <span onClick={this.collapseComments}>[-]</span>
                 </div>
@@ -73,9 +79,11 @@ export default class extends React.Component {
                     {comment.post_text}
                 </div>
                 <div className="comment-footer">
-                <Link className="reply"
-                to={'/reply/' + comment.hanesst_id}
-                onClick={this.onReplyClick}>reply</Link>
+                {authenticated &&
+                    <Link className="reply"
+                    to={'/reply/' + comment.hanesst_id}
+                    onClick={this.onReplyClick}>reply</Link>
+                }
                 </div>
             </div>
         );

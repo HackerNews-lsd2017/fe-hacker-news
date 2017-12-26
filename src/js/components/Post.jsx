@@ -8,7 +8,9 @@ export default class extends React.Component {
     static propTypes = {
         post: PropTypes.object.isRequired,
         commentsCount: PropTypes.number,
-        index: PropTypes.number
+        index: PropTypes.number,
+        upVoted: PropTypes.bool,
+        upVote: PropTypes.func
     }
 
     onCommentClick = () => {
@@ -96,7 +98,7 @@ export default class extends React.Component {
     }
 
     render() {
-        let {post, index} = this.props;
+        let {post, index, upVoted, upVote} = this.props;
 
         return (
             <div className="post">
@@ -106,7 +108,10 @@ export default class extends React.Component {
                     :
                         null
                     }
-                    <span className="title-text">&#9650;&nbsp;</span>
+                    <span className={"title-text" + (upVoted ? " active" : "")}
+                    onClick={upVote}>
+                        &#9650;&nbsp;
+                    </span>
                     <a href={post.post_url}>{post.post_title || ''}</a>
                     <span className="title-text">&nbsp;(</span>
                     <span className="title-text domain" onClick={this._getPosts}>{this._getDomain()}</span>

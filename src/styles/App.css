@@ -26,6 +26,12 @@ ul {
   font-size: 1em;
 }
 
+.user-header {
+  float: right;
+  height: 100%;
+  vertical-align: middle;
+}
+
 .header-content {
     display: inline-block;
     padding-left: 0.4em;
@@ -51,6 +57,11 @@ a {
   color: #828282;
   font-size: 10px;
   text-align: right;
+  cursor: default;
+}
+
+.active {
+  color: orange;
 }
 
 .domain {
@@ -82,7 +93,13 @@ a {
   margin-right: 4px;
 }
 
+.header-row {
+  height: 26px;
+}
+
 .header-right {
+  width: 100%;
+  height: 26px;
   float: right;
 }
 
