@@ -2,6 +2,7 @@ import React from 'react';
 import AuthStore from '../stores/AuthStore';
 import PostStore from '../stores/PostStore';
 import PostActions from '../actions/PostActionCreators';
+import {Link} from 'react-router-dom';
 
 export default class extends React.Component {
     state = {
@@ -104,6 +105,7 @@ export default class extends React.Component {
 
     render() {
         let {post, newComment} = this.state;
+
         return (
             <div className="comment-container">
                 <div className="story-container">
@@ -115,7 +117,9 @@ export default class extends React.Component {
                         value={newComment}
                         onChange={this.onCommentChange}/>
                         <button onClick={this.addComment}>
-                            reply
+                            <Link className="reply"
+                            to={'/reply/' + post.post_parent}
+                            onClick={this.onReplyClick}>reply</Link>
                         </button>
                     </div>
                 </div>

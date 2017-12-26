@@ -47,7 +47,7 @@ export default class extends React.Component {
                     {posts.length > 0 ?
                         <Newest posts={posts} />
                     : 
-                    <Loading className="loading" type={"spin"} color={"#ff6600"} height='166' width='93' />
+                    <Loading className="loading" type={"spin"} color={"#ff6600"} height='166px' width='93px' />
                 }
                 </div>
 

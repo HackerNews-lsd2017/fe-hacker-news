@@ -19,7 +19,7 @@ export default class extends React.Component {
         return (
             <table className="app-header">
                 <tbody>
-                    <tr>
+                    <tr className="header-row">
                         <td className="header-logo"></td>
                         <td className="header-left">
                             <span className="page-top">
@@ -47,23 +47,25 @@ export default class extends React.Component {
                             </span>
                         </td>
                         <td className="header-right">
-                        {authenticated ?
-                            <div>
-                                <span style={{display: "inline-block"}}>
-                                    <Link to="/user">
-                                        {user.username}(1)
-                                    </Link>&nbsp;|
-                                </span>
-                                <div style={{display: "inline-block"}}
-                                onClick={this.logOut}>
-                                    <span className="logout-button">&nbsp;logout</span>
+                            <div className="user-header">
+                            {authenticated ?
+                                <div>
+                                    <span style={{display: "inline-block"}}>
+                                        <Link to="/user">
+                                            {user.username}(1)
+                                        </Link>&nbsp;|
+                                    </span>
+                                    <div style={{display: "inline-block"}}
+                                    onClick={this.logOut}>
+                                        <span className="logout-button">&nbsp;logout</span>
+                                    </div>
                                 </div>
+                                :
+                                <div>
+                                    <Link to="/login">login</Link>
+                                </div>
+                            }
                             </div>
-                            :
-                            <div>
-                                <Link to="/login">login</Link>
-                            </div>
-                        }
                         </td>
                     </tr>
                 </tbody>

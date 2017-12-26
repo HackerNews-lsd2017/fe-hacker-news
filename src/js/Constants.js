@@ -21,7 +21,9 @@ export default {
         NEW_USER_MODIFIED: null,
         LOGGED_IN: null,
         LOGGED_OUT: null,
-        CHECK_AUTH: null
+        CHECK_AUTH: null,
+        UPVOTED_POST: null,
+        FETCH_KARMA: null
     }),
 
     POSTS_AMOUNT: 30

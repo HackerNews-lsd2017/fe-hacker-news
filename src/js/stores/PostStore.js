@@ -8,6 +8,7 @@ let _posts = [];
 let _comments = [];
 let _comment = "";
 let _post = {};
+let _karma = {};
 
 /* Private Functions */
 function setPosts(data) {
@@ -26,10 +27,70 @@ function updateComment(comment) {
     _comment = comment;
 }
 
+function duplicateId(posts, hanesst_id) {
+    if (posts[hanesst_id]) {
+        delete posts[hanesst_id];
+        return true;
+    }
+    return false;
+}
+
+function isEmpty(obj) {
+    for(var key in obj) {
+        if(obj.hasOwnProperty(key))
+            return false;
+    }
+    return true;
+}
+
+function handlePostUpvote(hanesst_id) {
+    let karmaHistory = getKarma();
+    if (!isEmpty(karmaHistory)) {
+        let posts = karmaHistory.posts;
+        if(!duplicateId(posts, hanesst_id)) {
+            posts[hanesst_id] = 1;
+            setLocalKarma(posts);
+            return;
+        }
+        setLocalKarma(posts);
+        return;
+    }
+    karmaHistory[hanesst_id] = 1;
+    setLocalKarma(karmaHistory);
+}
+
+function setLocalKarma(data) {
+    if(data) {
+        let karma = {posts: data};
+        localStorage.setItem('karma', JSON.stringify(karma));
+        setKarma(karma);
+        return;
+    }
+    localStorage.setItem('karma', JSON.stringify({posts: {}}));
+}
+
+function getKarma() {
+    let karmaHistory = JSON.parse(localStorage.getItem('karma'));
+
+    if (karmaHistory) {
+        return karmaHistory;
+    }
+
+    return {};
+}
+
+function setKarma(karma = getKarma()) {
+    _karma = karma;
+}
+
 /* Flux Store Creation */
 const Store = assign({}, BaseStore, {
     getPosts() {
         return _posts;
+    },
+
+    getPostsKarma() {
+        return _karma;
     },
 
     getComments() {
@@ -75,6 +136,12 @@ const Store = assign({}, BaseStore, {
                 break;
             case Constants.ActionTypes.COMMENT_UPDATED:
                 updateComment(action.data);
+                break;
+            case Constants.ActionTypes.UPVOTED_POST:
+                handlePostUpvote(action.data);
+                break;
+            case Constants.ActionTypes.FETCH_KARMA:
+                setKarma();
                 break;
             default:
                 return;
