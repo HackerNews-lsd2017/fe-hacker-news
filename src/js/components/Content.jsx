@@ -54,6 +54,7 @@ export default class extends React.Component {
                 <div className="app-footer">
                     <p className="more-button" onClick={this.loadPosts}>More</p>
                     <hr />
+                    <p>&ensp;This is a shallow clone of YCombinators Hacker News used for educational purposes</p>
                 </div>
             </div>
         );

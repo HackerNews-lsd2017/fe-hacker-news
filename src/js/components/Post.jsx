@@ -77,11 +77,11 @@ export default class extends React.Component {
 
     _getSubtext = () => {
         let {post} = this.props;
-        let {post_points, username, } = post;
+        let {karma, username} = post;
 
         return (
             <div>
-                <span>{(post_points || 0)  + " points "}</span>
+                <span>{(karma || 0)  + " points "}</span>
                 <span>{"by " + username + " "}</span>
                 <span>{this._getTime()}</span>
                 <span>{" | hide | "}</span>
