@@ -69,7 +69,7 @@ export default class extends React.Component {
         let {upVotes} = this.state;
         let id = hanesst_id.toString();
         
-        if(upVotes.posts[id]) {
+        if(upVotes.posts && upVotes.posts[id]) {
             return true;
         }
         return false;
