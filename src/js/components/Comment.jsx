@@ -19,7 +19,7 @@ export default class extends React.Component {
 
     // TODO: iplement
     collapseComments = () => {
-        console.log("collapse");
+        console.log("collapse block");
     }
 
     _getTime = () => {
